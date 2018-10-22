@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Timex.Interval – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-4f6aa19597cd1982c84e.css" />
+    <script src="dist/sidebar_items-bdc894081e.js"></script>
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+    <div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">timex v3.4.1</small>
+Timex.Interval        
+          <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+        <section id="moduledoc">
+<p>This module is used for creating and manipulating date/time intervals.</p>
+<h2 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1728778574-1">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-03]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1728778574-2">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="1728778574-2">]</span><span class="p" data-group-id="1728778574-1">)</span><span class="w">
+</span><span class="p" data-group-id="1728778574-3">%</span><span class="nc" data-group-id="1728778574-3">Elixir.Timex.Interval</span><span class="p" data-group-id="1728778574-3">{</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2016-03-03 00:00:00]</span><span class="p">,</span><span class="w"> </span><span class="ss">left_open</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w"> </span><span class="ss">right_open</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w"> </span><span class="ss">step</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1728778574-4">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1728778574-4">]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2016-03-06 00:00:00]</span><span class="p" data-group-id="1728778574-3">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1728778574-5">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-03]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2016-03-10 01:23:45]</span><span class="p" data-group-id="1728778574-5">)</span><span class="w">
+</span><span class="p" data-group-id="1728778574-6">%</span><span class="nc" data-group-id="1728778574-6">Timex.Interval</span><span class="p" data-group-id="1728778574-6">{</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2016-03-03 00:00:00]</span><span class="p">,</span><span class="w"> </span><span class="ss">left_open</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w"> </span><span class="ss">right_open</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w"> </span><span class="ss">step</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1728778574-7">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1728778574-7">]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2016-03-10 01:23:45]</span><span class="p" data-group-id="1728778574-6">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="ld">~N[2016-03-04 12:34:56]</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1728778574-8">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-03]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1728778574-9">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="1728778574-9">]</span><span class="p" data-group-id="1728778574-8">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="ld">~D[2016-03-01]</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1728778574-10">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-03]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1728778574-11">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="1728778574-11">]</span><span class="p" data-group-id="1728778574-10">)</span><span class="w">
+</span><span class="no">false</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">overlaps?</span><span class="p" data-group-id="1728778574-12">(</span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1728778574-13">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-01]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1728778574-14">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="1728778574-14">]</span><span class="p" data-group-id="1728778574-13">)</span><span class="p">,</span><span class="w">  </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1728778574-15">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-03]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1728778574-16">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="1728778574-16">]</span><span class="p" data-group-id="1728778574-15">)</span><span class="p" data-group-id="1728778574-12">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">overlaps?</span><span class="p" data-group-id="1728778574-17">(</span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1728778574-18">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-01]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1728778574-19">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1728778574-19">]</span><span class="p" data-group-id="1728778574-18">)</span><span class="p">,</span><span class="w">  </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1728778574-20">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-03]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1728778574-21">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="1728778574-21">]</span><span class="p" data-group-id="1728778574-20">)</span><span class="p" data-group-id="1728778574-17">)</span><span class="w">
+</span><span class="no">false</span></code></pre>
+        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:valid_interval_step/0">valid_interval_step()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:valid_interval_steps/0">valid_interval_steps()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:valid_step_unit/0">valid_step_unit()</a>
+  </div>
+</div>
+  </div>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#contains?/2">contains?(a, b)</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns true if the first interval includes every point in time the second includes</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#duration/2">duration(interval, unit)</a>
+  </div>
+    <div class="summary-synopsis"><p>Return the interval duration, given a unit</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#format!/3">format!(interval, format, formatter \\ nil)</a>
+  </div>
+    <div class="summary-synopsis"><p>Same as <a href="#format/3"><code class="inline">format/3</code></a>, but raises a <a href="Timex.Interval.FormatError.html"><code class="inline">Timex.Interval.FormatError</code></a> on failure</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#format/3">format(interval, format, formatter \\ nil)</a>
+  </div>
+    <div class="summary-synopsis"><p>Formats the interval as a human readable string</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#new/1">new(options \\ [])</a>
+  </div>
+    <div class="summary-synopsis"><p>Create a new Interval struct</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#overlaps?/2">overlaps?(a, b)</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns true if the first interval shares any point(s) in time with the second</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#with_step/2">with_step(interval, step)</a>
+  </div>
+    <div class="summary-synopsis"><p>Change the step value for the provided interval</p>
+</div>
+</div>
+  </div>
+        </section>
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types          </h1>
+          <div class="types-list">
+<div class="detail" id="t:t/0">
+    <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">t()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L44" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>t() :: %Timex.Interval{
+  from: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  left_open: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  right_open: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  step: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  until: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()
+}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:valid_interval_step/0">
+    <div class="detail-header">
+    <a href="#t:valid_interval_step/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">valid_interval_step()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L54" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>valid_interval_step() :: {<a href="#t:valid_step_unit/0">valid_step_unit</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:valid_interval_steps/0">
+    <div class="detail-header">
+    <a href="#t:valid_interval_steps/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">valid_interval_steps()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L55" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>valid_interval_steps() :: [<a href="#t:valid_interval_step/0">valid_interval_step</a>()]</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:valid_step_unit/0">
+    <div class="detail-header">
+    <a href="#t:valid_step_unit/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">valid_step_unit()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L45" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>valid_step_unit() ::
+  :microseconds
+  | :milliseconds
+  | :seconds
+  | :minutes
+  | :hours
+  | :days
+  | :weeks
+  | :months
+  | :years</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+          </div>
+        </section>
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<div class="detail" id="contains?/2">
+    <div class="detail-header">
+    <a href="#contains?/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">contains?(a, b)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L304" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>contains?(<a href="Timex.Interval.html#t:t/0">Timex.Interval.t</a>(), <a href="Timex.Interval.html#t:t/0">Timex.Interval.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns true if the first interval includes every point in time the second includes.</p>
+<h2 id="contains?/2-examples" class="section-heading">
+  <a href="#contains?/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<p>iex&gt; Elixir.Timex.Interval.contains?(Elixir.Timex.Interval.new(from: ~D[2018-01-01], until: ~D[2018-01-31]), Elixir.Timex.Interval.new(from: ~D[2018-01-01], until: ~D[2018-01-30]))
+true</p>
+<p>iex&gt; Elixir.Timex.Interval.contains?(Elixir.Timex.Interval.new(from: ~D[2018-01-01], until: ~D[2018-01-30]), Elixir.Timex.Interval.new(from: ~D[2018-01-01], until: ~D[2018-01-31]))
+false</p>
+<p>iex&gt; Elixir.Timex.Interval.contains?(Elixir.Timex.Interval.new(from: ~D[2018-01-01], until: ~D[2018-01-10]), Elixir.Timex.Interval.new(from: ~D[2018-01-05], until: ~D[2018-01-15]))
+false</p>
+  </section>
+</div>
+<div class="detail" id="duration/2">
+    <div class="detail-header">
+    <a href="#duration/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">duration(interval, unit)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L204" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+          </div>
+  <section class="docstring">
+<p>Return the interval duration, given a unit.</p>
+<p>When the unit is one of <code class="inline">:seconds</code>, <code class="inline">:minutes</code>, <code class="inline">:hours</code>, <code class="inline">:days</code>, <code class="inline">:weeks</code>, <code class="inline">:months</code>, <code class="inline">:years</code>, the result is an <code class="inline">integer</code>.</p>
+<p>When the unit is <code class="inline">:duration</code>, the result is a <code class="inline">Duration</code> struct.</p>
+<h2 id="duration/2-example" class="section-heading">
+  <a href="#duration/2-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="8095453550-1">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2014-09-22]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8095453550-2">[</span><span class="ss">months</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="8095453550-2">]</span><span class="p" data-group-id="8095453550-1">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">duration</span><span class="p" data-group-id="8095453550-3">(</span><span class="ss">:months</span><span class="p" data-group-id="8095453550-3">)</span><span class="w">
+</span><span class="mi">5</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="8095453550-4">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2014-09-22T15:30:00]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8095453550-5">[</span><span class="ss">minutes</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p" data-group-id="8095453550-5">]</span><span class="p" data-group-id="8095453550-4">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">duration</span><span class="p" data-group-id="8095453550-6">(</span><span class="ss">:duration</span><span class="p" data-group-id="8095453550-6">)</span><span class="w">
+</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_minutes</span><span class="p" data-group-id="8095453550-7">(</span><span class="mi">20</span><span class="p" data-group-id="8095453550-7">)</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="format!/3">
+  
+    <span id="format!/2"></span>
+  <div class="detail-header">
+    <a href="#format!/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">format!(interval, format, formatter \\ nil)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L274" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+          </div>
+  <section class="docstring">
+<p>Same as <a href="#format/3"><code class="inline">format/3</code></a>, but raises a <a href="Timex.Interval.FormatError.html"><code class="inline">Timex.Interval.FormatError</code></a> on failure.</p>
+  </section>
+</div>
+<div class="detail" id="format/3">
+  
+    <span id="format/2"></span>
+  <div class="detail-header">
+    <a href="#format/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">format(interval, format, formatter \\ nil)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L255" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+          </div>
+  <section class="docstring">
+<p>Formats the interval as a human readable string.</p>
+<h2 id="format/3-examples" class="section-heading">
+  <a href="#format/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="4507174758-1">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2014-09-22]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4507174758-2">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4507174758-2">]</span><span class="p" data-group-id="4507174758-1">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">format!</span><span class="p" data-group-id="4507174758-3">(</span><span class="s">&quot;%Y-%m-%d %H:%M&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="4507174758-3">)</span><span class="w">
+</span><span class="s">&quot;(2014-09-22 00:00, 2014-09-25 00:00]&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="4507174758-4">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2014-09-22]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4507174758-5">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4507174758-5">]</span><span class="p" data-group-id="4507174758-4">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">format!</span><span class="p" data-group-id="4507174758-6">(</span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="4507174758-6">)</span><span class="w">
+</span><span class="s">&quot;(2014-09-22, 2014-09-25]&quot;</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="new/1">
+  
+    <span id="new/0"></span>
+  <div class="detail-header">
+    <a href="#new/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">new(options \\ [])</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L130" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>new(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="#t:t/0">t</a>() | {:error, :invalid_until} | {:error, :invalid_step}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Create a new Interval struct.</p>
+<p><strong>Note:</strong> By default intervals are left open, i.e. they include the <code class="inline">from</code> date/time,
+and exclude the <code class="inline">until</code> date/time. Put another way, <code class="inline">from &lt;= x &lt; until</code>. This behavior
+matches that of other popular date/time libraries, such as Joda Time, as well as the SQL
+behavior of the <code class="inline">overlaps</code> keyword.</p>
+<p>Options:</p>
+<ul>
+<li><code class="inline">from</code>: The date the interval starts at. Should be a <code class="inline">(Naive)DateTime</code>.
+</li>
+<li><code class="inline">until</code>: Either a <code class="inline">(Naive)DateTime</code>, or a time shift that will be applied to the <code class="inline">from</code> date.
+  This value <em>must</em> be greater than <code class="inline">from</code>, otherwise an error will be returned.
+</li>
+<li><code class="inline">left_open</code>: Whether the interval is left open. See explanation below.
+</li>
+<li><code class="inline">right_open</code>: Whether the interval is right open. See explanation below.
+</li>
+<li><code class="inline">step</code>: The step to use when iterating the interval, defaults to <code class="inline">[days: 1]</code>
+</li>
+</ul>
+<p>The terms <code class="inline">left_open</code> and <code class="inline">right_open</code> come from the mathematical concept of intervals. You
+can see more detail on the theory <a href="https://en.wikipedia.org/wiki/Interval_(mathematics)">on Wikipedia</a>,
+but it can be more intuitively thought of like so:</p>
+<ul>
+<li>An “open” bound is inclusive, and a “closed” bound is exclusive
+</li>
+<li>So a left-open interval includes the <code class="inline">from</code> value, and a left-closed interval does not.
+</li>
+<li>Likewise, a right-open interval includes the <code class="inline">until</code> value, and a right-closed interval does not.
+</li>
+<li>An open interval is both left and right open, conversely, a closed interval is both left and right closed.
+</li>
+</ul>
+<p><strong>Note:</strong> <code class="inline">until</code> shifts delegate to <code class="inline">Timex.shift</code>, so the options provided should match its valid options.</p>
+<h2 id="new/1-examples" class="section-heading">
+  <a href="#new/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="7586128442-1">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2014-09-22]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2014-09-29]</span><span class="p" data-group-id="7586128442-1">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">format!</span><span class="p" data-group-id="7586128442-2">(</span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="7586128442-2">)</span><span class="w">
+</span><span class="s">&quot;(2014-09-22, 2014-09-29]&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="7586128442-3">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2014-09-22]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7586128442-4">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p" data-group-id="7586128442-4">]</span><span class="p" data-group-id="7586128442-3">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">format!</span><span class="p" data-group-id="7586128442-5">(</span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="7586128442-5">)</span><span class="w">
+</span><span class="s">&quot;(2014-09-22, 2014-09-29]&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="7586128442-6">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2014-09-22]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7586128442-7">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p" data-group-id="7586128442-7">]</span><span class="p">,</span><span class="w"> </span><span class="ss">left_open</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w"> </span><span class="ss">right_open</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="7586128442-6">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">format!</span><span class="p" data-group-id="7586128442-8">(</span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="7586128442-8">)</span><span class="w">
+</span><span class="s">&quot;[2014-09-22, 2014-09-29)&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="7586128442-9">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~N[2014-09-22T15:30:00]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7586128442-10">[</span><span class="ss">minutes</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p" data-group-id="7586128442-10">]</span><span class="p">,</span><span class="w"> </span><span class="ss">left_open</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="7586128442-9">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">format!</span><span class="p" data-group-id="7586128442-11">(</span><span class="s">&quot;%H:%M&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="7586128442-11">)</span><span class="w">
+</span><span class="s">&quot;[15:30, 15:50]&quot;</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="overlaps?/2">
+    <div class="detail-header">
+    <a href="#overlaps?/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">overlaps?(a, b)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L320" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>overlaps?(<a href="Timex.Interval.html#t:t/0">Timex.Interval.t</a>(), <a href="Timex.Interval.html#t:t/0">Timex.Interval.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns true if the first interval shares any point(s) in time with the second.</p>
+<h2 id="overlaps?/2-examples" class="section-heading">
+  <a href="#overlaps?/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Elixir.Timex.Interval</span><span class="o">.</span><span class="n">overlaps?</span><span class="p" data-group-id="3924604031-1">(</span><span class="nc">Elixir.Timex.Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3924604031-2">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-04]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3924604031-3">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3924604031-3">]</span><span class="p" data-group-id="3924604031-2">)</span><span class="p">,</span><span class="w"> </span><span class="nc">Elixir.Timex.Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3924604031-4">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-03]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3924604031-5">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3924604031-5">]</span><span class="p" data-group-id="3924604031-4">)</span><span class="p" data-group-id="3924604031-1">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Elixir.Timex.Interval</span><span class="o">.</span><span class="n">overlaps?</span><span class="p" data-group-id="3924604031-6">(</span><span class="nc">Elixir.Timex.Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3924604031-7">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-07]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3924604031-8">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3924604031-8">]</span><span class="p" data-group-id="3924604031-7">)</span><span class="p">,</span><span class="w"> </span><span class="nc">Elixir.Timex.Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3924604031-9">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2016-03-03]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3924604031-10">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3924604031-10">]</span><span class="p" data-group-id="3924604031-9">)</span><span class="p" data-group-id="3924604031-6">)</span><span class="w">
+</span><span class="no">false</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="with_step/2">
+    <div class="detail-header">
+    <a href="#with_step/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">with_step(interval, step)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/interval/interval.ex#L232" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>with_step(<a href="#t:t/0">t</a>(), <a href="#t:valid_interval_step/0">valid_interval_step</a>()) :: <a href="#t:t/0">t</a>() | {:error, :invalid_step}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Change the step value for the provided interval.</p>
+<p>The step should be a keyword list valid for use with <code class="inline">Timex.Date.shift</code>.</p>
+<h2 id="with_step/2-examples" class="section-heading">
+  <a href="#with_step/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3493322836-1">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2014-09-22]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3493322836-2">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3493322836-2">]</span><span class="p" data-group-id="3493322836-1">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">with_step</span><span class="p" data-group-id="3493322836-3">(</span><span class="p" data-group-id="3493322836-4">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3493322836-4">]</span><span class="p" data-group-id="3493322836-3">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="3493322836-5">(</span><span class="o">&amp;</span><span class="nc">Timex</span><span class="o">.</span><span class="n">format!</span><span class="p" data-group-id="3493322836-6">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="3493322836-6">)</span><span class="p" data-group-id="3493322836-5">)</span><span class="w">
+</span><span class="p" data-group-id="3493322836-7">[</span><span class="s">&quot;2014-09-22&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2014-09-23&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2014-09-24&quot;</span><span class="p" data-group-id="3493322836-7">]</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3493322836-8">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2014-09-22]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3493322836-9">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3493322836-9">]</span><span class="p">,</span><span class="w"> </span><span class="ss">right_open</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="3493322836-8">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">with_step</span><span class="p" data-group-id="3493322836-10">(</span><span class="p" data-group-id="3493322836-11">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="3493322836-11">]</span><span class="p" data-group-id="3493322836-10">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="3493322836-12">(</span><span class="o">&amp;</span><span class="nc">Timex</span><span class="o">.</span><span class="n">format!</span><span class="p" data-group-id="3493322836-13">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="3493322836-13">)</span><span class="p" data-group-id="3493322836-12">)</span><span class="w">
+</span><span class="p" data-group-id="3493322836-14">[</span><span class="s">&quot;2014-09-22&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2014-09-24&quot;</span><span class="p" data-group-id="3493322836-14">]</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Interval</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3493322836-15">(</span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2014-09-22]</span><span class="p">,</span><span class="w"> </span><span class="ss">until</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3493322836-16">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3493322836-16">]</span><span class="p">,</span><span class="w"> </span><span class="ss">right_open</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="3493322836-15">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Interval</span><span class="o">.</span><span class="n">with_step</span><span class="p" data-group-id="3493322836-17">(</span><span class="p" data-group-id="3493322836-18">[</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3493322836-18">]</span><span class="p" data-group-id="3493322836-17">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="3493322836-19">(</span><span class="o">&amp;</span><span class="nc">Timex</span><span class="o">.</span><span class="n">format!</span><span class="p" data-group-id="3493322836-20">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="3493322836-20">)</span><span class="p" data-group-id="3493322836-19">)</span><span class="w">
+</span><span class="p" data-group-id="3493322836-21">[</span><span class="s">&quot;2014-09-22&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2014-09-25&quot;</span><span class="p" data-group-id="3493322836-21">]</span></code></pre>
+  </section>
+</div>
+          </div>
+        </section>
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-4f6aa19597cd1982c84e.js"></script>
+  
+  </body>
+</html>
+

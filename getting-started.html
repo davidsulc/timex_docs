@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Getting Started – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-4f6aa19597cd1982c84e.css" />
+    <script src="dist/sidebar_items-bdc894081e.js"></script>
+    
+  </head>
+  <body data-type="extras">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+<h1>Getting Started</h1>
+<p><strong>Learn how to add timex to your Elixir project and start using it.</strong></p>
+<p>If you are looking for a general reference of what functions are available to you, take a
+look at the <a href="Timex.html"><code class="inline">Timex</code></a>, <a href="Timex.Interval.html"><code class="inline">Timex.Interval</code></a>, <a href="Timex.Duration.html"><code class="inline">Timex.Duration</code></a> modules, as they cover
+the vast majority of functionality you will care about.</p>
+<h2 id="project-setup" class="section-heading">
+  <a href="#project-setup" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Project Setup
+</h2>
+
+<p>To use Timex with your projects, edit your <code class="inline">mix.exs</code> file and add it as a dependency, as well as add <code class="inline">:timex</code> to your applications list.</p>
+<pre><code class="nohighlight makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">application</span><span class="w"> </span><span class="k" data-group-id="7617391169-1">do</span><span class="w">
+  </span><span class="p" data-group-id="7617391169-2">[</span><span class="ss">applications</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7617391169-3">[</span><span class="ss">:timex</span><span class="p" data-group-id="7617391169-3">]</span><span class="p" data-group-id="7617391169-2">]</span><span class="w">
+</span><span class="k" data-group-id="7617391169-1">end</span><span class="w">
+
+</span><span class="kd">defp</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="7617391169-4">do</span><span class="w">
+  </span><span class="p" data-group-id="7617391169-5">[</span><span class="p" data-group-id="7617391169-6">{</span><span class="ss">:timex</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 3.0&quot;</span><span class="p" data-group-id="7617391169-6">}</span><span class="p" data-group-id="7617391169-5">]</span><span class="w">
+</span><span class="k" data-group-id="7617391169-4">end</span></code></pre>
+<p>To use Timex modules without the Timex namespace, add <code class="inline">use Timex</code> to the top of each module you plan on referencing Timex from. You can then reference the modules directly, for example: <code class="inline">Duration.now</code>, versus <code class="inline">Timex.Duration.now</code>. You can also alias individual modules if that suits your needs better, but for purposes of this documentation, we’ll assume that you’re going the <code class="inline">use Timex</code> route.</p>
+<h3 id="what-is-timex" class="section-heading">
+  <a href="#what-is-timex" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  What Is Timex
+</h3>
+
+<p>Timex aims to be the richest, most comprehensive date/time library for Elixir projects, with the ultimate goal of being merged into the standard library, if such functionality is ever considered for inclusion.</p>
+<p>A rough list of current features:</p>
+<ul>
+<li>create datetimes in an arbitrary timezone
+</li>
+<li>create datetimes from Erlang dates or datetimes
+</li>
+<li><p>get dates/datetimes representing special points in time:</p>
+<ul>
+<li>end/beginning of year
+</li>
+<li>end/beginning of quarter
+</li>
+<li>end/beginning of month
+</li>
+<li>end/beginning of week
+</li>
+<li>end/beginning of day
+</li>
+</ul>
+</li>
+<li>convert to/from dates/datetimes in various units (seconds, minutes, hours, etc.) since year zero or UNIX epoch
+</li>
+<li><p>convert to/from dates/datetimes in various standard ISO forms:</p>
+<ul>
+<li>ISO triplets
+</li>
+<li>ISO day
+</li>
+<li>ISO week
+</li>
+</ul>
+</li>
+<li><p>convert to/from dates/datetimes in various formats:</p>
+<ul>
+<li>gregorian
+</li>
+<li>gregorian_seconds
+</li>
+<li>Erlang dates or datetimes
+</li>
+<li>UNIX timestamps
+</li>
+</ul>
+</li>
+<li>shift datetimes across timezones
+</li>
+<li>shift dates/datetimes through time using various units
+</li>
+<li>format/parse datetime strings
+</li>
+<li>compare and diff dates/datetimes
+</li>
+<li>normalize dates/datetimes
+</li>
+<li>create intervals between points in time which can be enumerated
+</li>
+<li>create timestamps and convert them to other time units
+</li>
+<li>compare and diff timestamps and various time units
+</li>
+<li>measure execution time of a function
+</li>
+<li>add and subtract time or datetimes
+</li>
+<li>and more..
+</li>
+</ul>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-4f6aa19597cd1982c84e.js"></script>
+  
+  </body>
+</html>
+

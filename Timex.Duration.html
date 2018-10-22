@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Timex.Duration – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-4f6aa19597cd1982c84e.css" />
+    <script src="dist/sidebar_items-bdc894081e.js"></script>
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+    <div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">timex v3.4.1</small>
+Timex.Duration        
+          <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+        <section id="moduledoc">
+<p>This module provides a friendly API for working with Erlang
+timestamps, i.e. <code class="inline">{megasecs, secs, microsecs}</code>. In addition,
+it provides an easy way to wrap the measurement of function
+execution time (via <code class="inline">measure</code>).</p>
+        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:measurement_units/0">measurement_units()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:to_options/0">to_options()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:units/0">units()</a>
+  </div>
+</div>
+  </div>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#abs/1">abs(duration)</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns the absolute value of the provided Duration</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add/2">add(duration1, duration2)</a>
+  </div>
+    <div class="summary-synopsis"><p>Add one Duration to another</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#diff/3">diff(t1, t2, type \\ nil)</a>
+  </div>
+    <div class="summary-synopsis"><p>This function determines the difference in time between two timestamps
+(represented by Duration structs). If the second timestamp is omitted,
+<code class="inline">Duration.now</code> will be used as the reference timestamp. If the first
+timestamp argument occurs before the second, the resulting measurement will
+be a negative value</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#elapsed/3">elapsed(duration, ref \\ nil, type \\ nil)</a>
+  </div>
+    <div class="summary-synopsis"><p>An alias for <code class="inline">Duration.diff/3</code></p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#epoch/0">epoch()</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns the duration since the first day of year 0 to Epoch</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#epoch/1">epoch(type)</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns the amount of time since the first day of year 0 to Epoch</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_clock/1">from_clock(arg)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a clock tuple, i.e. <code class="inline">{hour, minute, second, microsecond}</code> to a Duration</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_days/1">from_days(d)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts an integer value representing days to a Duration</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_erl/1">from_erl(arg)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts an Erlang timestamp to a Duration</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_hours/1">from_hours(h)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts an integer value representing hours to a Duration</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_microseconds/1">from_microseconds(us)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts an integer value representing microseconds to a Duration</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_milliseconds/1">from_milliseconds(ms)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts an integer value representing milliseconds to a Duration</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_minutes/1">from_minutes(m)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts an integer value representing minutes to a Duration</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_seconds/1">from_seconds(s)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts an integer value representing seconds to a Duration</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_time/1">from_time(t)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Time to a Duration</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_weeks/1">from_weeks(w)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts an integer value representing weeks to a Duration</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#invert/1">invert(duration)</a>
+  </div>
+    <div class="summary-synopsis"><p>Invert a Duration, i.e. a positive duration becomes a negative one, and vice versa</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#measure/1">measure(fun)</a>
+  </div>
+    <div class="summary-synopsis"><p>Evaluates fun() and measures the elapsed time</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#measure/2">measure(fun, args)</a>
+  </div>
+    <div class="summary-synopsis"><p>Evaluates <code class="inline">apply(fun, args)</code>, and measures execution time</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#measure/3">measure(module, fun, args)</a>
+  </div>
+    <div class="summary-synopsis"><p>Evaluates <code class="inline">apply(module, fun, args)</code>, and measures execution time</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#normalize/1">normalize(duration)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#now/1">now(type \\ nil)</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns the amount of time since Epoch</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#parse!/1">parse!(str)</a>
+  </div>
+    <div class="summary-synopsis"><p>Same as parse/1, but returns the Duration unwrapped, and raises on error</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#parse!/2">parse!(str, module)</a>
+  </div>
+    <div class="summary-synopsis"><p>Same as parse/2, but returns the Duration unwrapped, and raises on error</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#parse/1">parse(str)</a>
+  </div>
+    <div class="summary-synopsis"><p>Parses a duration string (in ISO-8601 format) into a Duration struct</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#parse/2">parse(str, module)</a>
+  </div>
+    <div class="summary-synopsis"><p>Parses a duration string into a Duration struct, using the provided parser module</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#scale/2">scale(duration, coef)</a>
+  </div>
+    <div class="summary-synopsis"><p>Scale a Duration by some coefficient value, i.e. a scale of 2 is twice is long</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#sub/2">sub(duration1, duration2)</a>
+  </div>
+    <div class="summary-synopsis"><p>Subtract one Duration from another</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_clock/1">to_clock(duration)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Duration to a clock tuple, i.e. <code class="inline">{hour,minute,second,microsecond}</code></p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_days/1">to_days(d)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Duration to its value in days</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_days/2">to_days(d, arg2)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_erl/1">to_erl(d)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Duration to an Erlang timestamp</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_hours/1">to_hours(d)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Duration to its value in hours</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_hours/2">to_hours(d, arg2)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_microseconds/1">to_microseconds(duration)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Duration to its value in microseconds</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_microseconds/2">to_microseconds(duration, arg2)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_milliseconds/1">to_milliseconds(d)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Duration to its value in milliseconds</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_milliseconds/2">to_milliseconds(d, arg2)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_minutes/1">to_minutes(d)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Duration to its value in minutes</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_minutes/2">to_minutes(d, arg2)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_seconds/1">to_seconds(d)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Duration to its value in seconds</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_seconds/2">to_seconds(d, arg2)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_string/1">to_string(duration)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Duration to a string, using the ISO standard for formatting durations</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_time!/1">to_time!(d)</a>
+  </div>
+    <div class="summary-synopsis"><p>Same as to_time/1, but returns the Time directly. Raises an error if the
+duration does not fit within a 24-hour clock</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_time/1">to_time(d)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Duration to a Time if the duration fits within a 24-hour clock.
+If it does not, an error tuple is returned</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_weeks/1">to_weeks(d)</a>
+  </div>
+    <div class="summary-synopsis"><p>Converts a Duration to its value in weeks</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_weeks/2">to_weeks(d, arg2)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#zero/0">zero()</a>
+  </div>
+    <div class="summary-synopsis"><p>Return a timestamp representing a time lapse of length 0</p>
+</div>
+</div>
+  </div>
+        </section>
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types          </h1>
+          <div class="types-list">
+<div class="detail" id="t:measurement_units/0">
+    <div class="detail-header">
+    <a href="#t:measurement_units/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">measurement_units()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L23" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>measurement_units() ::
+  :microseconds | :milliseconds | :seconds | :minutes | :hours</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:t/0">
+    <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">t()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L15" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>t() :: %Timex.Duration{
+  megaseconds: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
+  microseconds: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
+  seconds: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()
+}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:to_options/0">
+    <div class="detail-header">
+    <a href="#t:to_options/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">to_options()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L25" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_options() :: [{:truncate, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()}]</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:units/0">
+    <div class="detail-header">
+    <a href="#t:units/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">units()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L20" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>units() ::
+  :microseconds | :milliseconds | :seconds | :minutes | :hours | :days | :weeks</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+          </div>
+        </section>
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<div class="detail" id="abs/1">
+    <div class="detail-header">
+    <a href="#abs/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">abs(duration)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L471" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>abs(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns the absolute value of the provided Duration.</p>
+<h2 id="abs/1-example" class="section-heading">
+  <a href="#abs/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="6927707668-1">%</span><span class="nc" data-group-id="6927707668-1">Timex.Duration</span><span class="p" data-group-id="6927707668-1">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="p" data-group-id="6927707668-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">abs</span><span class="p" data-group-id="6927707668-2">(</span><span class="n">d</span><span class="p" data-group-id="6927707668-2">)</span><span class="w">
+</span><span class="p" data-group-id="6927707668-3">%</span><span class="nc" data-group-id="6927707668-3">Timex.Duration</span><span class="p" data-group-id="6927707668-3">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="6927707668-3">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="add/2">
+    <div class="detail-header">
+    <a href="#add/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">add(duration1, duration2)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L396" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>add(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Add one Duration to another.</p>
+<h2 id="add/2-examples" class="section-heading">
+  <a href="#add/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7633288238-1">%</span><span class="nc" data-group-id="7633288238-1">Timex.Duration</span><span class="p" data-group-id="7633288238-1">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7633288238-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">add</span><span class="p" data-group-id="7633288238-2">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p" data-group-id="7633288238-2">)</span><span class="w">
+</span><span class="p" data-group-id="7633288238-3">%</span><span class="nc" data-group-id="7633288238-3">Timex.Duration</span><span class="p" data-group-id="7633288238-3">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7633288238-3">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7633288238-4">%</span><span class="nc" data-group-id="7633288238-4">Timex.Duration</span><span class="p" data-group-id="7633288238-4">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">750000</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">750000</span><span class="p" data-group-id="7633288238-4">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">add</span><span class="p" data-group-id="7633288238-5">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p" data-group-id="7633288238-5">)</span><span class="w">
+</span><span class="p" data-group-id="7633288238-6">%</span><span class="nc" data-group-id="7633288238-6">Timex.Duration</span><span class="p" data-group-id="7633288238-6">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">500001</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">500000</span><span class="p" data-group-id="7633288238-6">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="diff/3">
+  
+    <span id="diff/2"></span>
+  <div class="detail-header">
+    <a href="#diff/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">diff(t1, t2, type \\ nil)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L618" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+          </div>
+  <section class="docstring">
+<p>This function determines the difference in time between two timestamps
+(represented by Duration structs). If the second timestamp is omitted,
+<code class="inline">Duration.now</code> will be used as the reference timestamp. If the first
+timestamp argument occurs before the second, the resulting measurement will
+be a negative value.</p>
+<p>The type argument is an atom indicating the units the measurement should be
+returned in. If no type argument is provided, a Duration will be returned.</p>
+<p>Valid measurement units for this function are:</p>
+<pre><code class="nohighlight makeup elixir"><span class="ss">:microseconds</span><span class="p">,</span><span class="w"> </span><span class="ss">:milliseconds</span><span class="p">,</span><span class="w"> </span><span class="ss">:seconds</span><span class="p">,</span><span class="w"> </span><span class="ss">:minutes</span><span class="p">,</span><span class="w"> </span><span class="ss">:hours</span><span class="p">,</span><span class="w"> </span><span class="ss">:days</span><span class="p">,</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ss">:weeks</span></code></pre>
+<h2 id="diff/3-examples" class="section-heading">
+  <a href="#diff/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="kn">alias</span><span class="w"> </span><span class="nc">Timex.Duration</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_erl</span><span class="p" data-group-id="6825869799-1">(</span><span class="p" data-group-id="6825869799-2">{</span><span class="mi">1457</span><span class="p">,</span><span class="w"> </span><span class="mi">136000</span><span class="p">,</span><span class="w"> </span><span class="mi">785000</span><span class="p" data-group-id="6825869799-2">}</span><span class="p" data-group-id="6825869799-1">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">diff</span><span class="p" data-group-id="6825869799-3">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="nc">Duration</span><span class="o">.</span><span class="n">zero</span><span class="p">,</span><span class="w"> </span><span class="ss">:days</span><span class="p" data-group-id="6825869799-3">)</span><span class="w">
+</span><span class="mi">16865</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="elapsed/3">
+  
+    <span id="elapsed/1"></span>
+
+    <span id="elapsed/2"></span>
+  <div class="detail-header">
+    <a href="#elapsed/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">elapsed(duration, ref \\ nil, type \\ nil)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L592" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+          </div>
+  <section class="docstring">
+<p>An alias for <code class="inline">Duration.diff/3</code></p>
+  </section>
+</div>
+<div class="detail" id="epoch/0">
+    <div class="detail-header">
+    <a href="#epoch/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">epoch()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L505" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>epoch() :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns the duration since the first day of year 0 to Epoch.</p>
+<h2 id="epoch/0-example" class="section-heading">
+  <a href="#epoch/0-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">epoch</span><span class="p" data-group-id="1019208210-1">(</span><span class="p" data-group-id="1019208210-1">)</span><span class="w">
+</span><span class="p" data-group-id="1019208210-2">%</span><span class="nc" data-group-id="1019208210-2">Timex.Duration</span><span class="p" data-group-id="1019208210-2">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">62_167</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">219_200</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="1019208210-2">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="epoch/1">
+    <div class="detail-header">
+    <a href="#epoch/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">epoch(type)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L536" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>epoch(nil) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+          <pre>epoch(<a href="#t:units/0">units</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns the amount of time since the first day of year 0 to Epoch.</p>
+<p>The argument is an atom indicating the type of time units to return.</p>
+<p>The allowed unit type atoms are:</p>
+<ul>
+<li>:microseconds
+</li>
+<li>:milliseconds
+</li>
+<li>:seconds
+</li>
+<li>:minutes
+</li>
+<li>:hours
+</li>
+<li>:days
+</li>
+<li>:weeks
+</li>
+</ul>
+<h2 id="epoch/1-examples" class="section-heading">
+  <a href="#epoch/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">epoch</span><span class="p" data-group-id="9800240664-1">(</span><span class="ss">:seconds</span><span class="p" data-group-id="9800240664-1">)</span><span class="w">
+</span><span class="mi">62_167_219_200</span></code></pre>
+<p>If the specified type is nil, a duration since the first day of year 0 to Epoch
+is returned.</p>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">epoch</span><span class="p" data-group-id="8378166167-1">(</span><span class="no">nil</span><span class="p" data-group-id="8378166167-1">)</span><span class="w">
+</span><span class="p" data-group-id="8378166167-2">%</span><span class="nc" data-group-id="8378166167-2">Timex.Duration</span><span class="p" data-group-id="8378166167-2">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">62_167</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">219_200</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="8378166167-2">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="from_clock/1">
+    <div class="detail-header">
+    <a href="#from_clock/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">from_clock(arg)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L177" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+          </div>
+  <section class="docstring">
+<p>Converts a clock tuple, i.e. <code class="inline">{hour, minute, second, microsecond}</code> to a Duration.</p>
+<h2 id="from_clock/1-example" class="section-heading">
+  <a href="#from_clock/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">from_clock</span><span class="p" data-group-id="1478858172-1">(</span><span class="p" data-group-id="1478858172-2">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p" data-group-id="1478858172-2">}</span><span class="p" data-group-id="1478858172-1">)</span><span class="w">
+</span><span class="p" data-group-id="1478858172-3">%</span><span class="nc" data-group-id="1478858172-3">Timex.Duration</span><span class="p" data-group-id="1478858172-3">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">3723</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p" data-group-id="1478858172-3">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="from_days/1">
+    <div class="detail-header">
+    <a href="#from_days/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">from_days(d)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L374" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>from_days(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts an integer value representing days to a Duration</p>
+  </section>
+</div>
+<div class="detail" id="from_erl/1">
+    <div class="detail-header">
+    <a href="#from_erl/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">from_erl(arg)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L49" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>from_erl(<a href="Timex.Types.html#t:timestamp/0">Timex.Types.timestamp</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts an Erlang timestamp to a Duration</p>
+<h2 id="from_erl/1-example" class="section-heading">
+  <a href="#from_erl/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">from_erl</span><span class="p" data-group-id="3232576873-1">(</span><span class="p" data-group-id="3232576873-2">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3232576873-2">}</span><span class="p" data-group-id="3232576873-1">)</span><span class="w">
+</span><span class="p" data-group-id="3232576873-3">%</span><span class="nc" data-group-id="3232576873-3">Timex.Duration</span><span class="p" data-group-id="3232576873-3">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3232576873-3">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="from_hours/1">
+    <div class="detail-header">
+    <a href="#from_hours/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">from_hours(h)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L368" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>from_hours(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts an integer value representing hours to a Duration</p>
+  </section>
+</div>
+<div class="detail" id="from_microseconds/1">
+    <div class="detail-header">
+    <a href="#from_microseconds/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">from_microseconds(us)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L339" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>from_microseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts an integer value representing microseconds to a Duration</p>
+  </section>
+</div>
+<div class="detail" id="from_milliseconds/1">
+    <div class="detail-header">
+    <a href="#from_milliseconds/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">from_milliseconds(ms)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L350" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>from_milliseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts an integer value representing milliseconds to a Duration</p>
+  </section>
+</div>
+<div class="detail" id="from_minutes/1">
+    <div class="detail-header">
+    <a href="#from_minutes/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">from_minutes(m)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L362" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>from_minutes(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts an integer value representing minutes to a Duration</p>
+  </section>
+</div>
+<div class="detail" id="from_seconds/1">
+    <div class="detail-header">
+    <a href="#from_seconds/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">from_seconds(s)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L356" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>from_seconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts an integer value representing seconds to a Duration</p>
+  </section>
+</div>
+<div class="detail" id="from_time/1">
+    <div class="detail-header">
+    <a href="#from_time/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">from_time(t)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L101" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>from_time(<a href="https://hexdocs.pm/elixir/Time.html#t:t/0">Time.t</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts a Time to a Duration</p>
+<h2 id="from_time/1-example" class="section-heading">
+  <a href="#from_time/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">from_time</span><span class="p" data-group-id="8028898070-1">(</span><span class="sx">~T[01:01:30]</span><span class="p" data-group-id="8028898070-1">)</span><span class="w">
+</span><span class="p" data-group-id="8028898070-2">%</span><span class="nc" data-group-id="8028898070-2">Timex.Duration</span><span class="p" data-group-id="8028898070-2">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">3690</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="8028898070-2">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="from_weeks/1">
+    <div class="detail-header">
+    <a href="#from_weeks/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">from_weeks(w)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L380" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>from_weeks(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts an integer value representing weeks to a Duration</p>
+  </section>
+</div>
+<div class="detail" id="invert/1">
+    <div class="detail-header">
+    <a href="#invert/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">invert(duration)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L457" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>invert(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Invert a Duration, i.e. a positive duration becomes a negative one, and vice versa</p>
+<h2 id="invert/1-example" class="section-heading">
+  <a href="#invert/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="5183544762-1">%</span><span class="nc" data-group-id="5183544762-1">Timex.Duration</span><span class="p" data-group-id="5183544762-1">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="p" data-group-id="5183544762-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">invert</span><span class="p" data-group-id="5183544762-2">(</span><span class="n">d</span><span class="p" data-group-id="5183544762-2">)</span><span class="w">
+</span><span class="p" data-group-id="5183544762-3">%</span><span class="nc" data-group-id="5183544762-3">Timex.Duration</span><span class="p" data-group-id="5183544762-3">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="5183544762-3">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="measure/1">
+    <div class="detail-header">
+    <a href="#measure/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">measure(fun)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L652" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>measure((() -> <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>())) :: {<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Evaluates fun() and measures the elapsed time.</p>
+<p>Returns <code class="inline">{Duration.t, result}</code>.</p>
+<h2 id="measure/1-example" class="section-heading">
+  <a href="#measure/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="6050596603-1">{</span><span class="c">_timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="6050596603-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Duration</span><span class="o">.</span><span class="n">measure</span><span class="p" data-group-id="6050596603-2">(</span><span class="k" data-group-id="6050596603-3">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k" data-group-id="6050596603-3">end</span><span class="p" data-group-id="6050596603-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span><span class="w">
+</span><span class="no">true</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="measure/2">
+    <div class="detail-header">
+    <a href="#measure/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">measure(fun, args)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L669" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>measure((... -> <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()), [<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()]) :: {<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Evaluates <code class="inline">apply(fun, args)</code>, and measures execution time.</p>
+<p>Returns <code class="inline">{Duration.t, result}</code>.</p>
+<h2 id="measure/2-example" class="section-heading">
+  <a href="#measure/2-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="1538195651-1">{</span><span class="c">_timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="1538195651-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Duration</span><span class="o">.</span><span class="n">measure</span><span class="p" data-group-id="1538195651-2">(</span><span class="k" data-group-id="1538195651-3">fn</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k" data-group-id="1538195651-3">end</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1538195651-4">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p" data-group-id="1538195651-4">]</span><span class="p" data-group-id="1538195651-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">8</span><span class="w">
+</span><span class="no">true</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="measure/3">
+    <div class="detail-header">
+    <a href="#measure/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">measure(module, fun, args)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L686" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>measure(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), [<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()]) :: {<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Evaluates <code class="inline">apply(module, fun, args)</code>, and measures execution time.</p>
+<p>Returns <code class="inline">{Duration.t, result}</code>.</p>
+<h2 id="measure/3-example" class="section-heading">
+  <a href="#measure/3-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="3163131825-1">{</span><span class="c">_timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="3163131825-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Duration</span><span class="o">.</span><span class="n">measure</span><span class="p" data-group-id="3163131825-2">(</span><span class="nc">Enum</span><span class="p">,</span><span class="w"> </span><span class="ss">:map</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3163131825-3">[</span><span class="p" data-group-id="3163131825-4">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p" data-group-id="3163131825-4">]</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p" data-group-id="3163131825-5">(</span><span class="ni">&amp;1</span><span class="o">*</span><span class="mi">2</span><span class="p" data-group-id="3163131825-5">)</span><span class="p" data-group-id="3163131825-3">]</span><span class="p" data-group-id="3163131825-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p" data-group-id="3163131825-6">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p" data-group-id="3163131825-6">]</span><span class="w">
+</span><span class="no">true</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="normalize/1">
+    <div class="detail-header">
+    <a href="#normalize/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">normalize(duration)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L692" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+          </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="now/1">
+  
+    <span id="now/0"></span>
+  <div class="detail-header">
+    <a href="#now/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">now(type \\ nil)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L587" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>now(nil) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+          <pre>now(<a href="#t:units/0">units</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns the amount of time since Epoch.</p>
+<p>The argument is an atom indicating the type of time units to return.</p>
+<p>The allowed unit type atoms are:</p>
+<ul>
+<li>:microseconds
+</li>
+<li>:milliseconds
+</li>
+<li>:seconds
+</li>
+<li>:minutes
+</li>
+<li>:hours
+</li>
+<li>:days
+</li>
+<li>:weeks
+</li>
+</ul>
+<h2 id="now/1-examples" class="section-heading">
+  <a href="#now/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">now</span><span class="p" data-group-id="1599493206-1">(</span><span class="ss">:seconds</span><span class="p" data-group-id="1599493206-1">)</span><span class="w">
+</span><span class="mi">1483141644</span></code></pre>
+<p>When the argument is omitted or nil, a Duration is returned.</p>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">now</span><span class="w">
+</span><span class="p" data-group-id="0108394861-1">%</span><span class="nc" data-group-id="0108394861-1">Timex.Duration</span><span class="p" data-group-id="0108394861-1">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1483</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">141562</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">536938</span><span class="p" data-group-id="0108394861-1">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="parse!/1">
+    <div class="detail-header">
+    <a href="#parse!/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">parse!(str)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L140" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>parse!(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Same as parse/1, but returns the Duration unwrapped, and raises on error</p>
+  </section>
+</div>
+<div class="detail" id="parse!/2">
+    <div class="detail-header">
+    <a href="#parse!/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">parse!(str, module)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L146" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>parse!(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Same as parse/2, but returns the Duration unwrapped, and raises on error</p>
+  </section>
+</div>
+<div class="detail" id="parse/1">
+    <div class="detail-header">
+    <a href="#parse/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">parse(str)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L128" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>parse(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: {:ok, <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Parses a duration string (in ISO-8601 format) into a Duration struct.</p>
+  </section>
+</div>
+<div class="detail" id="parse/2">
+    <div class="detail-header">
+    <a href="#parse/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">parse(str, module)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L134" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>parse(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>()) :: {:ok, <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Parses a duration string into a Duration struct, using the provided parser module.</p>
+  </section>
+</div>
+<div class="detail" id="scale/2">
+    <div class="detail-header">
+    <a href="#scale/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">scale(duration, coef)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L431" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>scale(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), coefficient :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()) ::
+  <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Scale a Duration by some coefficient value, i.e. a scale of 2 is twice is long.</p>
+<h2 id="scale/2-example" class="section-heading">
+  <a href="#scale/2-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="2699994149-1">%</span><span class="nc" data-group-id="2699994149-1">Timex.Duration</span><span class="p" data-group-id="2699994149-1">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="2699994149-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">scale</span><span class="p" data-group-id="2699994149-2">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="2699994149-2">)</span><span class="w">
+</span><span class="p" data-group-id="2699994149-3">%</span><span class="nc" data-group-id="2699994149-3">Timex.Duration</span><span class="p" data-group-id="2699994149-3">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="2699994149-3">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="sub/2">
+    <div class="detail-header">
+    <a href="#sub/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">sub(duration1, duration2)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L414" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>sub(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Subtract one Duration from another.</p>
+<h2 id="sub/2-example" class="section-heading">
+  <a href="#sub/2-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">d1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="9678193853-1">%</span><span class="nc" data-group-id="9678193853-1">Timex.Duration</span><span class="p" data-group-id="9678193853-1">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="9678193853-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="n">d2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="9678193853-2">%</span><span class="nc" data-group-id="9678193853-2">Timex.Duration</span><span class="p" data-group-id="9678193853-2">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="9678193853-2">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">sub</span><span class="p" data-group-id="9678193853-3">(</span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="p" data-group-id="9678193853-3">)</span><span class="w">
+</span><span class="p" data-group-id="9678193853-4">%</span><span class="nc" data-group-id="9678193853-4">Timex.Duration</span><span class="p" data-group-id="9678193853-4">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="9678193853-4">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_clock/1">
+    <div class="detail-header">
+    <a href="#to_clock/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_clock(duration)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L157" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+          </div>
+  <section class="docstring">
+<p>Converts a Duration to a clock tuple, i.e. <code class="inline">{hour,minute,second,microsecond}</code>.</p>
+<h2 id="to_clock/1-example" class="section-heading">
+  <a href="#to_clock/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3131625211-1">%</span><span class="nc" data-group-id="3131625211-1">Timex.Duration</span><span class="p" data-group-id="3131625211-1">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p" data-group-id="3131625211-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">to_clock</span><span class="p" data-group-id="3131625211-2">(</span><span class="n">d</span><span class="p" data-group-id="3131625211-2">)</span><span class="w">
+</span><span class="p" data-group-id="3131625211-3">{</span><span class="mi">277</span><span class="p">,</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p" data-group-id="3131625211-3">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_days/1">
+    <div class="detail-header">
+    <a href="#to_days/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_days(d)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L279" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_days(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts a Duration to its value in days</p>
+<h2 id="to_days/1-example" class="section-heading">
+  <a href="#to_days/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_days</span><span class="p" data-group-id="4393393258-1">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_hours</span><span class="p" data-group-id="4393393258-2">(</span><span class="mi">6</span><span class="p" data-group-id="4393393258-2">)</span><span class="p" data-group-id="4393393258-1">)</span><span class="w">
+</span><span class="mf">0.25</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_days</span><span class="p" data-group-id="4393393258-3">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_hours</span><span class="p" data-group-id="4393393258-4">(</span><span class="mi">25</span><span class="p" data-group-id="4393393258-4">)</span><span class="p">,</span><span class="w"> </span><span class="ss">truncate</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="4393393258-3">)</span><span class="w">
+</span><span class="mi">1</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_days/2">
+    <div class="detail-header">
+    <a href="#to_days/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_days(d, arg2)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L327" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_days(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="#t:to_options/0">to_options</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+          <pre>to_days(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :microseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_days(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :milliseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_days(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :seconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_days(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :minutes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_days(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :hours) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_days(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :days) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_days(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :weeks) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="to_erl/1">
+    <div class="detail-header">
+    <a href="#to_erl/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_erl(d)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L37" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_erl(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="Timex.Types.html#t:timestamp/0">Timex.Types.timestamp</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts a Duration to an Erlang timestamp</p>
+<h2 id="to_erl/1-example" class="section-heading">
+  <a href="#to_erl/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7478412089-1">%</span><span class="nc" data-group-id="7478412089-1">Timex.Duration</span><span class="p" data-group-id="7478412089-1">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="7478412089-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">to_erl</span><span class="p" data-group-id="7478412089-2">(</span><span class="n">d</span><span class="p" data-group-id="7478412089-2">)</span><span class="w">
+</span><span class="p" data-group-id="7478412089-3">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="7478412089-3">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_hours/1">
+    <div class="detail-header">
+    <a href="#to_hours/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_hours(d)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L263" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_hours(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts a Duration to its value in hours</p>
+<h2 id="to_hours/1-example" class="section-heading">
+  <a href="#to_hours/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_hours</span><span class="p" data-group-id="3401421928-1">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_minutes</span><span class="p" data-group-id="3401421928-2">(</span><span class="mi">105</span><span class="p" data-group-id="3401421928-2">)</span><span class="p" data-group-id="3401421928-1">)</span><span class="w">
+</span><span class="mf">1.75</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_hours</span><span class="p" data-group-id="3401421928-3">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_minutes</span><span class="p" data-group-id="3401421928-4">(</span><span class="mi">105</span><span class="p" data-group-id="3401421928-4">)</span><span class="p">,</span><span class="w"> </span><span class="ss">truncate</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="3401421928-3">)</span><span class="w">
+</span><span class="mi">1</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_hours/2">
+    <div class="detail-header">
+    <a href="#to_hours/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_hours(d, arg2)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L323" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_hours(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="#t:to_options/0">to_options</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+          <pre>to_hours(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :microseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_hours(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :milliseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_hours(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :seconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_hours(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :minutes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_hours(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :hours) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_hours(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :days) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_hours(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :weeks) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="to_microseconds/1">
+    <div class="detail-header">
+    <a href="#to_microseconds/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_microseconds(duration)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L194" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_microseconds(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts a Duration to its value in microseconds</p>
+<h2 id="to_microseconds/1-example" class="section-heading">
+  <a href="#to_microseconds/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_microseconds</span><span class="p" data-group-id="4521840623-1">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_milliseconds</span><span class="p" data-group-id="4521840623-2">(</span><span class="mf">10.5</span><span class="p" data-group-id="4521840623-2">)</span><span class="p" data-group-id="4521840623-1">)</span><span class="w">
+</span><span class="mi">10_500</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_microseconds/2">
+    <div class="detail-header">
+    <a href="#to_microseconds/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_microseconds(duration, arg2)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L307" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_microseconds(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="#t:to_options/0">to_options</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+          <pre>to_microseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :microseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_microseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :milliseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_microseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :seconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_microseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :minutes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_microseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :hours) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_microseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :days) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_microseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :weeks) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="to_milliseconds/1">
+    <div class="detail-header">
+    <a href="#to_milliseconds/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_milliseconds(d)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L215" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_milliseconds(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts a Duration to its value in milliseconds</p>
+<h2 id="to_milliseconds/1-example" class="section-heading">
+  <a href="#to_milliseconds/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_milliseconds</span><span class="p" data-group-id="4174881032-1">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_seconds</span><span class="p" data-group-id="4174881032-2">(</span><span class="mi">1</span><span class="p" data-group-id="4174881032-2">)</span><span class="p" data-group-id="4174881032-1">)</span><span class="w">
+</span><span class="mf">1000.0</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_milliseconds</span><span class="p" data-group-id="4174881032-3">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_seconds</span><span class="p" data-group-id="4174881032-4">(</span><span class="mf">1.543</span><span class="p" data-group-id="4174881032-4">)</span><span class="p" data-group-id="4174881032-3">)</span><span class="w">
+</span><span class="mf">1543.0</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_milliseconds</span><span class="p" data-group-id="4174881032-5">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_seconds</span><span class="p" data-group-id="4174881032-6">(</span><span class="mf">1.543</span><span class="p" data-group-id="4174881032-6">)</span><span class="p">,</span><span class="w"> </span><span class="ss">truncate</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="4174881032-5">)</span><span class="w">
+</span><span class="mi">1543</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_milliseconds/2">
+    <div class="detail-header">
+    <a href="#to_milliseconds/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_milliseconds(d, arg2)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L311" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_milliseconds(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="#t:to_options/0">to_options</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+          <pre>to_milliseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :microseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_milliseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :milliseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_milliseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :seconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_milliseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :minutes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_milliseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :hours) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_milliseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :days) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_milliseconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :weeks) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="to_minutes/1">
+    <div class="detail-header">
+    <a href="#to_minutes/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_minutes(d)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L247" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_minutes(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts a Duration to its value in minutes</p>
+<h2 id="to_minutes/1-example" class="section-heading">
+  <a href="#to_minutes/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_minutes</span><span class="p" data-group-id="6342180730-1">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_seconds</span><span class="p" data-group-id="6342180730-2">(</span><span class="mi">90</span><span class="p" data-group-id="6342180730-2">)</span><span class="p" data-group-id="6342180730-1">)</span><span class="w">
+</span><span class="mf">1.5</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_minutes</span><span class="p" data-group-id="6342180730-3">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_seconds</span><span class="p" data-group-id="6342180730-4">(</span><span class="mi">65</span><span class="p" data-group-id="6342180730-4">)</span><span class="p">,</span><span class="w"> </span><span class="ss">truncate</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="6342180730-3">)</span><span class="w">
+</span><span class="mi">1</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_minutes/2">
+    <div class="detail-header">
+    <a href="#to_minutes/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_minutes(d, arg2)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L319" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_minutes(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="#t:to_options/0">to_options</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+          <pre>to_minutes(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :microseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_minutes(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :milliseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_minutes(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :seconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_minutes(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :minutes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_minutes(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :hours) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_minutes(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :days) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_minutes(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :weeks) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="to_seconds/1">
+    <div class="detail-header">
+    <a href="#to_seconds/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_seconds(d)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L231" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_seconds(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts a Duration to its value in seconds</p>
+<h2 id="to_seconds/1-example" class="section-heading">
+  <a href="#to_seconds/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_seconds</span><span class="p" data-group-id="6988626856-1">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_milliseconds</span><span class="p" data-group-id="6988626856-2">(</span><span class="mi">1500</span><span class="p" data-group-id="6988626856-2">)</span><span class="p" data-group-id="6988626856-1">)</span><span class="w">
+</span><span class="mf">1.5</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_seconds</span><span class="p" data-group-id="6988626856-3">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_milliseconds</span><span class="p" data-group-id="6988626856-4">(</span><span class="mi">1500</span><span class="p" data-group-id="6988626856-4">)</span><span class="p">,</span><span class="w"> </span><span class="ss">truncate</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="6988626856-3">)</span><span class="w">
+</span><span class="mi">1</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_seconds/2">
+    <div class="detail-header">
+    <a href="#to_seconds/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_seconds(d, arg2)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L315" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_seconds(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="#t:to_options/0">to_options</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+          <pre>to_seconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :microseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_seconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :milliseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_seconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :seconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_seconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :minutes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_seconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :hours) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_seconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :days) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_seconds(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :weeks) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="to_string/1">
+    <div class="detail-header">
+    <a href="#to_string/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_string(duration)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L120" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_string(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts a Duration to a string, using the ISO standard for formatting durations.</p>
+<h2 id="to_string/1-examples" class="section-heading">
+  <a href="#to_string/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="4061157558-1">%</span><span class="nc" data-group-id="4061157558-1">Timex.Duration</span><span class="p" data-group-id="4061157558-1">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">3661</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="4061157558-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">to_string</span><span class="p" data-group-id="4061157558-2">(</span><span class="n">d</span><span class="p" data-group-id="4061157558-2">)</span><span class="w">
+</span><span class="s">&quot;PT1H1M1S&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="4061157558-3">%</span><span class="nc" data-group-id="4061157558-3">Timex.Duration</span><span class="p" data-group-id="4061157558-3">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">656013</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p" data-group-id="4061157558-3">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">to_string</span><span class="p" data-group-id="4061157558-4">(</span><span class="n">d</span><span class="p" data-group-id="4061157558-4">)</span><span class="w">
+</span><span class="s">&quot;P3Y3M3DT3H33M33.000033S&quot;</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_time!/1">
+    <div class="detail-header">
+    <a href="#to_time!/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_time!(d)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L87" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_time!(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="https://hexdocs.pm/elixir/Time.html#t:t/0">Time.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Same as to_time/1, but returns the Time directly. Raises an error if the
+duration does not fit within a 24-hour clock.</p>
+<h2 id="to_time!/1-examples" class="section-heading">
+  <a href="#to_time!/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7317771536-1">%</span><span class="nc" data-group-id="7317771536-1">Timex.Duration</span><span class="p" data-group-id="7317771536-1">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="7317771536-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">to_time!</span><span class="p" data-group-id="7317771536-2">(</span><span class="n">d</span><span class="p" data-group-id="7317771536-2">)</span><span class="w">
+</span><span class="sx">~T[01:06:40]</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7317771536-3">%</span><span class="nc" data-group-id="7317771536-3">Timex.Duration</span><span class="p" data-group-id="7317771536-3">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="7317771536-3">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">to_time!</span><span class="p" data-group-id="7317771536-4">(</span><span class="n">d</span><span class="p" data-group-id="7317771536-4">)</span><span class="w">
+</span><span class="gt">** (ArgumentError) cannot convert {277, 46, 40} to time, reason: :invalid_time</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_time/1">
+    <div class="detail-header">
+    <a href="#to_time/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_time(d)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L67" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_time(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: {:ok, <a href="https://hexdocs.pm/elixir/Time.html#t:t/0">Time.t</a>()} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts a Duration to a Time if the duration fits within a 24-hour clock.
+If it does not, an error tuple is returned.</p>
+<h2 id="to_time/1-examples" class="section-heading">
+  <a href="#to_time/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7535059256-1">%</span><span class="nc" data-group-id="7535059256-1">Timex.Duration</span><span class="p" data-group-id="7535059256-1">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="7535059256-1">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">to_time</span><span class="p" data-group-id="7535059256-2">(</span><span class="n">d</span><span class="p" data-group-id="7535059256-2">)</span><span class="w">
+</span><span class="p" data-group-id="7535059256-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="sx">~T[01:06:40]</span><span class="p" data-group-id="7535059256-3">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7535059256-4">%</span><span class="nc" data-group-id="7535059256-4">Timex.Duration</span><span class="p" data-group-id="7535059256-4">{</span><span class="ss">megaseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">seconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">microseconds</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="7535059256-4">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">to_time</span><span class="p" data-group-id="7535059256-5">(</span><span class="n">d</span><span class="p" data-group-id="7535059256-5">)</span><span class="w">
+</span><span class="p" data-group-id="7535059256-6">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:invalid_time</span><span class="p" data-group-id="7535059256-6">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_weeks/1">
+    <div class="detail-header">
+    <a href="#to_weeks/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_weeks(d)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L295" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_weeks(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Converts a Duration to its value in weeks</p>
+<h2 id="to_weeks/1-example" class="section-heading">
+  <a href="#to_weeks/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_weeks</span><span class="p" data-group-id="4857546221-1">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_days</span><span class="p" data-group-id="4857546221-2">(</span><span class="mi">14</span><span class="p" data-group-id="4857546221-2">)</span><span class="p" data-group-id="4857546221-1">)</span><span class="w">
+</span><span class="mf">2.0</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">to_weeks</span><span class="p" data-group-id="4857546221-3">(</span><span class="nc">Duration</span><span class="o">.</span><span class="n">from_days</span><span class="p" data-group-id="4857546221-4">(</span><span class="mi">13</span><span class="p" data-group-id="4857546221-4">)</span><span class="p">,</span><span class="w"> </span><span class="ss">truncate</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="4857546221-3">)</span><span class="w">
+</span><span class="mi">1</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="to_weeks/2">
+    <div class="detail-header">
+    <a href="#to_weeks/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">to_weeks(d, arg2)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L331" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>to_weeks(<a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>(), <a href="#t:to_options/0">to_options</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+          <pre>to_weeks(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :microseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_weeks(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :milliseconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_weeks(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :seconds) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_weeks(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :minutes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_weeks(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :hours) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_weeks(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :days) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+          <pre>to_weeks(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>(), :weeks) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="zero/0">
+    <div class="detail-header">
+    <a href="#zero/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">zero()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/time/duration.ex#L494" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>zero() :: <a href="Timex.Duration.html#t:t/0">Timex.Duration.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Return a timestamp representing a time lapse of length 0.</p>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">zero</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Timex.Duration</span><span class="o">.</span><span class="n">to_seconds</span><span class="w">
+</span><span class="mf">0.0</span></code></pre>
+<p>Can be useful for operations on collections of durations. For instance,</p>
+<pre><code class="nohighlight makeup elixir"><span class="nc">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p" data-group-id="3461757726-1">(</span><span class="n">durations</span><span class="p">,</span><span class="w"> </span><span class="nc">Duration</span><span class="o">.</span><span class="n">zero</span><span class="p">,</span><span class="w"> </span><span class="nc">Duration</span><span class="o">.</span><span class="n">add</span><span class="p" data-group-id="3461757726-2">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="ni">&amp;2</span><span class="p" data-group-id="3461757726-2">)</span><span class="p" data-group-id="3461757726-1">)</span></code></pre>
+<p>Can also be used to represent the timestamp of the start of the UNIX epoch,
+as all Erlang timestamps are relative to this point.</p>
+  </section>
+</div>
+          </div>
+        </section>
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-4f6aa19597cd1982c84e.js"></script>
+  
+  </body>
+</html>
+

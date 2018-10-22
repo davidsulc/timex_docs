@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>API Reference – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-4f6aa19597cd1982c84e.css" />
+    <script src="dist/sidebar_items-bdc894081e.js"></script>
+    
+  </head>
+  <body data-type="extras">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+<h1>
+  <small class="visible-xs">timex v3.4.1</small>
+  API Reference
+</h1>
+
+  <section class="details-list">
+    <h2 id="modules" class="section-heading">
+  <a href="#modules" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Modules
+</h2>
+
+    <div class="summary">
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.html">Timex</a>
+  </div>
+    <div class="summary-synopsis"><h2 id="timex" class="section-heading">
+  <a href="#timex" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Timex
+</h2>
+
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.AmbiguousDateTime.html">Timex.AmbiguousDateTime</a>
+  </div>
+    <div class="summary-synopsis"><p>Represents a DateTime which is ambiguous due to timezone rules</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.AmbiguousTimezoneInfo.html">Timex.AmbiguousTimezoneInfo</a>
+  </div>
+    <div class="summary-synopsis"><p>Represents a choice of two possible timezone periods for a given
+point in time</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Calendar.Julian.html">Timex.Calendar.Julian</a>
+  </div>
+    <div class="summary-synopsis"><p>This module contains functions for working with dates in the Julian calendar</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Comparable.html">Timex.Comparable</a>
+  </div>
+    <div class="summary-synopsis"><p>This protocol is used for comparing and diffing different date/time representations</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Duration.html">Timex.Duration</a>
+  </div>
+    <div class="summary-synopsis"><p>This module provides a friendly API for working with Erlang
+timestamps, i.e. <code class="inline">{megasecs, secs, microsecs}</code>. In addition,
+it provides an easy way to wrap the measurement of function
+execution time (via <code class="inline">measure</code>)</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Format.DateTime.Formatter.html">Timex.Format.DateTime.Formatter</a>
+  </div>
+    <div class="summary-synopsis"><p>This module defines the behaviour for custom DateTime formatters</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Format.DateTime.Formatters.Default.html">Timex.Format.DateTime.Formatters.Default</a>
+  </div>
+    <div class="summary-synopsis"><p>Date formatting language used by default by the formatting functions in Timex</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Format.DateTime.Formatters.Relative.html">Timex.Format.DateTime.Formatters.Relative</a>
+  </div>
+    <div class="summary-synopsis"><p>Relative time, based on Moment.js</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Format.DateTime.Formatters.Strftime.html">Timex.Format.DateTime.Formatters.Strftime</a>
+  </div>
+    <div class="summary-synopsis"><p>Date formatting language defined by the <code class="inline">strftime</code> function from the Standard
+C Library</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Format.Duration.Formatter.html">Timex.Format.Duration.Formatter</a>
+  </div>
+    <div class="summary-synopsis"><p>This module defines the behaviour for custom Time formatters</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Format.Duration.Formatters.Default.html">Timex.Format.Duration.Formatters.Default</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles formatting Duration values as ISO 8601 durations as described below</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Format.Duration.Formatters.Humanized.html">Timex.Format.Duration.Formatters.Humanized</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles formatting timestamp values as human readable strings.
+For formatting timestamps as points in time rather than intervals,
+use <code class="inline">Timex.format</code></p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Gettext.html">Timex.Gettext</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Interval.html">Timex.Interval</a>
+  </div>
+    <div class="summary-synopsis"><p>This module is used for creating and manipulating date/time intervals</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.DateTime.Parser.html">Timex.Parse.DateTime.Parser</a>
+  </div>
+    <div class="summary-synopsis"><p>This is the base plugin behavior for all Timex date/time string parsers</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.DateTime.Parsers.ISO8601Extended.html">Timex.Parse.DateTime.Parsers.ISO8601Extended</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.DateTime.Tokenizer.html">Timex.Parse.DateTime.Tokenizer</a>
+  </div>
+    <div class="summary-synopsis"><p>Defines the API for a custom tokenizer which can extend Timex’s datetime parsing facilities</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.DateTime.Tokenizers.Default.html">Timex.Parse.DateTime.Tokenizers.Default</a>
+  </div>
+    <div class="summary-synopsis"><p>Implements the parser for the default DateTime format strings</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.DateTime.Tokenizers.Strftime.html">Timex.Parse.DateTime.Tokenizers.Strftime</a>
+  </div>
+    <div class="summary-synopsis"><p>Implements the parser for strftime-style datetime format strings</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.Duration.Parser.html">Timex.Parse.Duration.Parser</a>
+  </div>
+    <div class="summary-synopsis"><p>This module is responsible for parsing input strings into Duration structs.
+The actual parsing is delegated to specific parser modules, but this module
+provides a unified API for all of them</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.Duration.Parsers.ISO8601Parser.html">Timex.Parse.Duration.Parsers.ISO8601Parser</a>
+  </div>
+    <div class="summary-synopsis"><p>This module parses ISO-8601 duration strings into Duration structs</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.Timezones.Posix.html">Timex.Parse.Timezones.Posix</a>
+  </div>
+    <div class="summary-synopsis"><p>Parses POSIX-style timezones</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.Timezones.Posix.PosixTimezone.html">Timex.Parse.Timezones.Posix.PosixTimezone</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.ZoneInfo.Parser.html">Timex.Parse.ZoneInfo.Parser</a>
+  </div>
+    <div class="summary-synopsis"><p>This module is responsible for parsing binary zoneinfo files,
+such as those found in /usr/local/zoneinfo</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.ZoneInfo.Parser.Zone.html">Timex.Parse.ZoneInfo.Parser.Zone</a>
+  </div>
+    <div class="summary-synopsis"><p>Represents the data retreived from a binary tzfile.
+For details on the tzfile format, see</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Protocol.html">Timex.Protocol</a>
+  </div>
+    <div class="summary-synopsis"><p>This protocol defines the API for functions which take a <a href="https://hexdocs.pm/elixir/Date.html"><code class="inline">Date</code></a>,
+<a href="https://hexdocs.pm/elixir/NaiveDateTime.html"><code class="inline">NaiveDateTime</code></a>, or <a href="https://hexdocs.pm/elixir/DateTime.html"><code class="inline">DateTime</code></a> as input</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Time.html">Timex.Time</a>
+  </div>
+    <div class="summary-synopsis"><p>This module provides helper functions for working with Times</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Timezone.html">Timex.Timezone</a>
+  </div>
+    <div class="summary-synopsis"><p>This module is used for looking up the timezone information for
+a given point in time, in the desired zone. Timezones are dependent
+not only on locale, but the date and time for which you are querying.
+For instance, the timezone offset from UTC for <code class="inline">Europe/Moscow</code> is different
+for March 3rd of 2015, than it was in 2013. These differences are important,
+and as such, all functions in this module are date/time sensitive, and where
+omitted, the current date/time are assumed</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Timezone.Local.html">Timex.Timezone.Local</a>
+  </div>
+    <div class="summary-synopsis"><p>This module is responsible for determining the timezone configuration of the
+local machine. It determines this from a number of sources, depending on platform,
+but the order of precedence is as follows</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.TimezoneInfo.html">Timex.TimezoneInfo</a>
+  </div>
+    <div class="summary-synopsis"><p>All relevant timezone information for a given period, i.e. Europe/Moscow on March 3rd, 2013</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Translator.html">Timex.Translator</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Types.html">Timex.Types</a>
+  </div>
+</div>
+    </div>
+  </section>
+
+  <section class="details-list">
+    <h2 id="exceptions" class="section-heading">
+  <a href="#exceptions" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Exceptions
+</h2>
+
+    <div class="summary">
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Format.FormatError.html">Timex.Format.FormatError</a>
+  </div>
+    <div class="summary-synopsis"><p>Used for errors encountered during string formatting</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Interval.FormatError.html">Timex.Interval.FormatError</a>
+  </div>
+    <div class="summary-synopsis"><p>Thrown when an error occurs with formatting an Interval</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Timex.Parse.ParseError.html">Timex.Parse.ParseError</a>
+  </div>
+    <div class="summary-synopsis"><p>Used for errors encountered during parsing</p>
+</div>
+</div>
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-4f6aa19597cd1982c84e.js"></script>
+  
+  </body>
+</html>
+

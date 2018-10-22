@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Timex.AmbiguousDateTime – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-4f6aa19597cd1982c84e.css" />
+    <script src="dist/sidebar_items-bdc894081e.js"></script>
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+    <div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">timex v3.4.1</small>
+Timex.AmbiguousDateTime        
+          <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/datetime/ambiguous.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+        <section id="moduledoc">
+<p>Represents a DateTime which is ambiguous due to timezone rules.</p>
+<h2 id="module-ambiguity-1-non-existent-times" class="section-heading">
+  <a href="#module-ambiguity-1-non-existent-times" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Ambiguity #1 - Non-existent times
+</h2>
+
+<p>Let’s use American daylight savings time rules as our example here,
+using America/Chicago as our example. Central Standard Time for that
+zone ends at 2:00 AM, but Central Daylight Time does not begin until
+3:00 AM, this is because at 2:00 AM, our clocks “spring forward” - which
+is just an easy way of remembering that the offset goes from -6 from UTC,
+to -5 from UTC. Since there is no timezone period associated with the hours
+of 2-3 AM in the America/Chicago zone (it’s neither CST nor CDT during that hour),
+one has to decide what the intent is. Timex makes the call that shifting to the
+next period (i.e. “spring foward” using our example above) makes the most logical
+sense when working with non-existent time periods.</p>
+<p>TL;DR - Timex will “spring forward” or “fall back”, depending on what the zone change
+happens to be for the non-existent time. Using America/Chicago as an example, if you
+try to create a DateTime for 2 AM on March 13, 2016, Timex will give you back 3 AM on
+March 13, 2016, because the zone is in the middle of changing from CST to CDT, and the
+earliest representable time in CDT is 3 AM.</p>
+<h2 id="module-ambiguity-2-times-with-more-than-one-valid-zone-period" class="section-heading">
+  <a href="#module-ambiguity-2-times-with-more-than-one-valid-zone-period" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Ambiguity #2 - Times with more than one valid zone period
+</h2>
+
+<p>This one is the reason why this module exists. There are times, though rare, where more
+than one zone applies to a given date and time. For example, Asia/Taipei, on December 31st,
+1895, from 23:54:00 to 23:59:59, two timezone periods are active LMT, and JWST, because that
+locale was switching to JWST from LMT. Because of this, it’s impossible to know programmaticaly
+which zone is desired. The programmer must make a choice on which zone they want to use.</p>
+<p>For this use case, Timex will return an AmbiguousDateTime any time you try to create a DateTime,
+or shift a DateTime, to an ambiguous time period. It has two fields, :before, containing a DateTime
+configured in the timezone occurring before the ambiguous period, and :after, containing a DateTime
+configured in the timezone occurring after the ambiguous period. It is up to you as the programmer to
+decide which DateTime is the one to use, but my recommendation is to choose :after, unless you have a
+specific reason to use :before.</p>
+        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t()</a>
+  </div>
+</div>
+  </div>
+        </section>
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types          </h1>
+          <div class="types-list">
+<div class="detail" id="t:t/0">
+    <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">t()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/datetime/ambiguous.ex#L43" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>t() :: %Timex.AmbiguousDateTime{after: <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>(), before: <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+          </div>
+        </section>
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-4f6aa19597cd1982c84e.js"></script>
+  
+  </body>
+</html>
+

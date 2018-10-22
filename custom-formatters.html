@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Custom Formatters – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-4f6aa19597cd1982c84e.css" />
+    <script src="dist/sidebar_items-bdc894081e.js"></script>
+    
+  </head>
+  <body data-type="extras">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+<h1>Custom Formatters</h1>
+<h3 id="how-to-implement-a-custom-formatter-for-use-with-timex" class="section-heading">
+  <a href="#how-to-implement-a-custom-formatter-for-use-with-timex" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  How to implement a custom formatter for use with Timex
+</h3>
+
+<p>Implementing your own custom formatter is pretty straightforward if you plan to use one of the built-in format string tokenizers (default or strftime). The following example will use a custom tokenizer, and implement the formatter over the top of that.</p>
+<p>The tokenizer is implemented as described in the <a href="doc:custom-parsers">Custom Parsers</a> section, and the source code can be found in the Timex repo <a href="https://github.com/bitwalker/timex/blob/master/examples/tokenizer/humanized.exs">here</a>.</p>
+<h3 id="getting-started" class="section-heading">
+  <a href="#getting-started" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Getting Started
+</h3>
+
+<p>In brief, all you need to know is the following:</p>
+<ul>
+<li>Extend the <code class="inline">Formatter</code> behavior, by adding <code class="inline">use Timex.Format.DateTime.Formatter</code> to the top of your module.
+</li>
+<li>Implement <code class="inline">tokenize/1</code> callback.
+</li>
+<li>Implement <code class="inline">format/2</code> callback.
+</li>
+<li>Implement <code class="inline">format!/2</code> callback.
+</li>
+</ul>
+<p>The <code class="inline">tokenize/1</code> callback can simply be delegated to the tokenizer you wish to use, while the implementation of <code class="inline">format/2</code> and <code class="inline">format!/2</code> are what we really are interested in here.</p>
+<h3 id="implementing-the-humanized-formatter" class="section-heading">
+  <a href="#implementing-the-humanized-formatter" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Implementing the Humanized formatter
+</h3>
+
+<p>The implementation of the formatter for our “humanized” date format would like something like the following:</p>
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.DateTimeFormatters.Humanized</span><span class="w"> </span><span class="k" data-group-id="0679692719-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex.Format.DateTime.Formatter</span><span class="w">
+
+  </span><span class="kn">alias</span><span class="w"> </span><span class="nc">Timex.Format.FormatError</span><span class="w">
+  </span><span class="kn">alias</span><span class="w"> </span><span class="nc">MyApp.DateTimeTokenizers.Humanized</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="nc">Tokenizer</span><span class="w">
+
+  </span><span class="na">@days</span><span class="w"> </span><span class="p" data-group-id="0679692719-2">[</span><span class="w">
+    </span><span class="s">&quot;first&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;second&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;third&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;fourth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;fifth&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s">&quot;sixth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;seventh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;eighth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ninth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tenth&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s">&quot;eleventh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;twelfth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;thirteenth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;fourteenth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;fifteenth&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s">&quot;sixteenth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;seventeenth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;eighteenth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nineteenth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;twentieth&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s">&quot;twenty-first&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;twenty-second&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;twenty-third&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;twenty-fourth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;twenty-fifth&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s">&quot;twenty-sixth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;twenty-seventh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;twenty-eighth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;twenty-ninth&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;thirtieth&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="s">&quot;thirty-first&quot;</span><span class="w">
+  </span><span class="p" data-group-id="0679692719-2">]</span><span class="w">
+
+  </span><span class="kd">defdelegate</span><span class="w"> </span><span class="n">tokenize</span><span class="p" data-group-id="0679692719-3">(</span><span class="n">format_string</span><span class="p" data-group-id="0679692719-3">)</span><span class="p">,</span><span class="w"> </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="nc">Tokenizer</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">format!</span><span class="p" data-group-id="0679692719-4">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">format_string</span><span class="p" data-group-id="0679692719-4">)</span><span class="w"> </span><span class="k" data-group-id="0679692719-5">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="n">format</span><span class="p" data-group-id="0679692719-6">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">format_string</span><span class="p" data-group-id="0679692719-6">)</span><span class="w"> </span><span class="k" data-group-id="0679692719-7">do</span><span class="w">
+      </span><span class="p" data-group-id="0679692719-8">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="0679692719-8">}</span><span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">result</span><span class="w">
+      </span><span class="p" data-group-id="0679692719-9">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">reason</span><span class="p" data-group-id="0679692719-9">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">raise</span><span class="w"> </span><span class="nc">FormatError</span><span class="p">,</span><span class="w"> </span><span class="ss">message</span><span class="p">:</span><span class="w"> </span><span class="n">reason</span><span class="w">
+    </span><span class="k" data-group-id="0679692719-7">end</span><span class="w">
+  </span><span class="k" data-group-id="0679692719-5">end</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">format</span><span class="p" data-group-id="0679692719-10">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">format_string</span><span class="p" data-group-id="0679692719-10">)</span><span class="w"> </span><span class="k" data-group-id="0679692719-11">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="n">tokenize</span><span class="p" data-group-id="0679692719-12">(</span><span class="n">format_string</span><span class="p" data-group-id="0679692719-12">)</span><span class="w"> </span><span class="k" data-group-id="0679692719-13">do</span><span class="w">
+      </span><span class="p" data-group-id="0679692719-14">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-15">[</span><span class="p" data-group-id="0679692719-15">]</span><span class="p" data-group-id="0679692719-14">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="p" data-group-id="0679692719-16">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;There were no formatting directives in the provided string.&quot;</span><span class="p" data-group-id="0679692719-16">}</span><span class="w">
+      </span><span class="p" data-group-id="0679692719-17">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">dirs</span><span class="p" data-group-id="0679692719-17">}</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">is_list</span><span class="p" data-group-id="0679692719-18">(</span><span class="n">dirs</span><span class="p" data-group-id="0679692719-18">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">do_format</span><span class="p" data-group-id="0679692719-19">(</span><span class="nc">Timex</span><span class="o">.</span><span class="n">to_naive_datetime</span><span class="p" data-group-id="0679692719-20">(</span><span class="n">date</span><span class="p" data-group-id="0679692719-20">)</span><span class="p">,</span><span class="w"> </span><span class="n">dirs</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-21">&lt;&lt;</span><span class="p" data-group-id="0679692719-21">&gt;&gt;</span><span class="p" data-group-id="0679692719-19">)</span><span class="w">
+      </span><span class="p" data-group-id="0679692719-22">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">reason</span><span class="p" data-group-id="0679692719-22">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="0679692719-23">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-24">{</span><span class="ss">:format</span><span class="p">,</span><span class="w"> </span><span class="n">reason</span><span class="p" data-group-id="0679692719-24">}</span><span class="p" data-group-id="0679692719-23">}</span><span class="w">
+    </span><span class="k" data-group-id="0679692719-13">end</span><span class="w">
+  </span><span class="k" data-group-id="0679692719-11">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">do_format</span><span class="p" data-group-id="0679692719-25">(</span><span class="c">_date</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-26">[</span><span class="p" data-group-id="0679692719-26">]</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="0679692719-25">)</span><span class="p">,</span><span class="w">             </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0679692719-27">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="0679692719-27">}</span><span class="w">
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">do_format</span><span class="p" data-group-id="0679692719-28">(</span><span class="c">_date</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-29">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="0679692719-29">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">error</span><span class="p" data-group-id="0679692719-28">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">error</span><span class="w">
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">do_format</span><span class="p" data-group-id="0679692719-30">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-31">[</span><span class="p" data-group-id="0679692719-32">%</span><span class="nc" data-group-id="0679692719-32">Directive</span><span class="p" data-group-id="0679692719-32">{</span><span class="ss">type</span><span class="p">:</span><span class="w"> </span><span class="ss">:literal</span><span class="p">,</span><span class="w"> </span><span class="ss">value</span><span class="p">:</span><span class="w"> </span><span class="n">char</span><span class="p" data-group-id="0679692719-32">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">dirs</span><span class="p" data-group-id="0679692719-31">]</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="0679692719-30">)</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">is_binary</span><span class="p" data-group-id="0679692719-33">(</span><span class="n">char</span><span class="p" data-group-id="0679692719-33">)</span><span class="w"> </span><span class="k" data-group-id="0679692719-34">do</span><span class="w">
+    </span><span class="n">do_format</span><span class="p" data-group-id="0679692719-35">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">dirs</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-36">&lt;&lt;</span><span class="n">result</span><span class="o">::</span><span class="n">binary</span><span class="p">,</span><span class="w"> </span><span class="n">char</span><span class="o">::</span><span class="n">binary</span><span class="p" data-group-id="0679692719-36">&gt;&gt;</span><span class="p" data-group-id="0679692719-35">)</span><span class="w">
+  </span><span class="k" data-group-id="0679692719-34">end</span><span class="w">
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">do_format</span><span class="p" data-group-id="0679692719-37">(</span><span class="p" data-group-id="0679692719-38">%</span><span class="nc" data-group-id="0679692719-38">NaiveDateTime</span><span class="p" data-group-id="0679692719-38">{</span><span class="ss">day</span><span class="p">:</span><span class="w"> </span><span class="n">day</span><span class="p" data-group-id="0679692719-38">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-39">[</span><span class="p" data-group-id="0679692719-40">%</span><span class="nc" data-group-id="0679692719-40">Directive</span><span class="p" data-group-id="0679692719-40">{</span><span class="ss">type</span><span class="p">:</span><span class="w"> </span><span class="ss">:oday_phonetic</span><span class="p" data-group-id="0679692719-40">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">dirs</span><span class="p" data-group-id="0679692719-39">]</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="0679692719-37">)</span><span class="w"> </span><span class="k" data-group-id="0679692719-41">do</span><span class="w">
+    </span><span class="n">phonetic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">at</span><span class="p" data-group-id="0679692719-42">(</span><span class="na">@days</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0679692719-42">)</span><span class="w">
+    </span><span class="n">do_format</span><span class="p" data-group-id="0679692719-43">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">dirs</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-44">&lt;&lt;</span><span class="n">result</span><span class="o">::</span><span class="n">binary</span><span class="p">,</span><span class="w"> </span><span class="n">phonetic</span><span class="o">::</span><span class="n">binary</span><span class="p" data-group-id="0679692719-44">&gt;&gt;</span><span class="p" data-group-id="0679692719-43">)</span><span class="w">
+  </span><span class="k" data-group-id="0679692719-41">end</span><span class="w">
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">do_format</span><span class="p" data-group-id="0679692719-45">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-46">[</span><span class="p" data-group-id="0679692719-47">%</span><span class="nc" data-group-id="0679692719-47">Directive</span><span class="p" data-group-id="0679692719-47">{</span><span class="ss">type</span><span class="p">:</span><span class="w"> </span><span class="ss">:date_shift</span><span class="p" data-group-id="0679692719-47">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">dirs</span><span class="p" data-group-id="0679692719-46">]</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="0679692719-45">)</span><span class="w"> </span><span class="k" data-group-id="0679692719-48">do</span><span class="w">
+    </span><span class="n">do_format</span><span class="p" data-group-id="0679692719-49">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">dirs</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-50">&lt;&lt;</span><span class="n">result</span><span class="o">::</span><span class="n">binary</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;currently&quot;</span><span class="o">::</span><span class="n">binary</span><span class="p" data-group-id="0679692719-50">&gt;&gt;</span><span class="p" data-group-id="0679692719-49">)</span><span class="w">
+  </span><span class="k" data-group-id="0679692719-48">end</span><span class="w">
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">do_format</span><span class="p" data-group-id="0679692719-51">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-52">[</span><span class="p" data-group-id="0679692719-53">%</span><span class="nc" data-group-id="0679692719-53">Directive</span><span class="p" data-group-id="0679692719-53">{</span><span class="ss">type</span><span class="p">:</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="ss">modifiers</span><span class="p">:</span><span class="w"> </span><span class="n">mods</span><span class="p">,</span><span class="w"> </span><span class="ss">flags</span><span class="p">:</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span><span class="w"> </span><span class="ss">width</span><span class="p">:</span><span class="w"> </span><span class="n">width</span><span class="p" data-group-id="0679692719-53">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">dirs</span><span class="p" data-group-id="0679692719-52">]</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="0679692719-51">)</span><span class="w"> </span><span class="k" data-group-id="0679692719-54">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="n">format_token</span><span class="p" data-group-id="0679692719-55">(</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">mods</span><span class="p">,</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p" data-group-id="0679692719-55">)</span><span class="w"> </span><span class="k" data-group-id="0679692719-56">do</span><span class="w">
+      </span><span class="p" data-group-id="0679692719-57">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="0679692719-57">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">err</span><span class="w">
+      </span><span class="n">formatted</span><span class="w">         </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">do_format</span><span class="p" data-group-id="0679692719-58">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">dirs</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0679692719-59">&lt;&lt;</span><span class="n">result</span><span class="o">::</span><span class="n">binary</span><span class="p">,</span><span class="w"> </span><span class="n">formatted</span><span class="o">::</span><span class="n">binary</span><span class="p" data-group-id="0679692719-59">&gt;&gt;</span><span class="p" data-group-id="0679692719-58">)</span><span class="w">
+    </span><span class="k" data-group-id="0679692719-56">end</span><span class="w">
+  </span><span class="k" data-group-id="0679692719-54">end</span><span class="w">
+
+</span><span class="k" data-group-id="0679692719-1">end</span></code></pre>
+<p>As you can see the implementation is pretty straightforward. You’ll notice that the last <code class="inline">do_format</code> implementation calls an imported function <code class="inline">format_token/5</code>, this allows you to delegate the formatting of known directives to the formatter, which will use standard formatting rules. You can of course override the formatting of directives using the style above (pattern matching on the directive type and handling the formatting directly).</p>
+<p>To use our new formatter with <code class="inline">Timex.format</code>:</p>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">alias</span><span class="w"> </span><span class="nc">MyApp.DateTimeFormatters.Humanized</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="nc">HumanFormat</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="kn">alias</span><span class="w"> </span><span class="nc">MyApp.DateTimeTokenizers.Humanized</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;{shift} the {day} of {month}, {year}&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex</span><span class="o">.</span><span class="n">format</span><span class="p" data-group-id="7548867170-1">(</span><span class="nc">Timex</span><span class="o">.</span><span class="n">now</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="nc">HumanFormat</span><span class="p" data-group-id="7548867170-1">)</span><span class="w">
+</span><span class="p" data-group-id="7548867170-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;currently the eleventh of August, 2015&quot;</span><span class="p" data-group-id="7548867170-2">}</span></code></pre>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-4f6aa19597cd1982c84e.js"></script>
+  
+  </body>
+</html>
+
