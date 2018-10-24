@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Timex.Translator – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-31a11ba8d67816a5bb76.css" />
+    <script src="dist/sidebar_items-d0b0758a2c.js"></script>
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+    <div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">timex v3.4.1</small>
+Timex.Translator        
+          <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/l10n/translator.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#current_locale/0">current_locale()</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns the active locale for the process in which this function is called</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#default_locale/0">default_locale()</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns the currently configured default locale. If not set, “en” is used</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_day_periods/1">get_day_periods(locale)</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns a map of day period types to translated day period names</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_months/1">get_months(locale)</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns a map of ordinal months to month names</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_months_abbreviated/1">get_months_abbreviated(locale)</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns a map of ordinal months to month abbreviations</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_weekdays/1">get_weekdays(locale)</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns a map of ordinal weekdays to weekday names, where Monday = 1,
+translated in the given locale</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_weekdays_abbreviated/1">get_weekdays_abbreviated(locale)</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns a map of ordinal weekdays to weekday abbreviations, where Mon = 1</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#translate/3">translate(locale, domain, msgid)</a>
+  </div>
+    <div class="summary-synopsis"><p>Translates a string for a given locale and domain</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#translate_plural/5">translate_plural(locale, domain, msgid, msgid_plural, n)</a>
+  </div>
+    <div class="summary-synopsis"><p>Translates a string for a given locale and domain, following the pluralization rules of that
+language</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#with_locale/2">with_locale(locale, list)</a>
+  </div>
+    <div class="summary-synopsis"><p>This macro sets the locale during execution of a given block of code</p>
+</div>
+</div>
+  </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<div class="detail" id="current_locale/0">
+    <div class="detail-header">
+    <a href="#current_locale/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">current_locale()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/l10n/translator.ex#L61" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>current_locale() :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns the active locale for the process in which this function is called</p>
+  </section>
+</div>
+<div class="detail" id="default_locale/0">
+    <div class="detail-header">
+    <a href="#default_locale/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">default_locale()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/l10n/translator.ex#L67" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>default_locale() :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns the currently configured default locale. If not set, “en” is used.</p>
+  </section>
+</div>
+<div class="detail" id="get_day_periods/1">
+    <div class="detail-header">
+    <a href="#get_day_periods/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">get_day_periods(locale)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/l10n/translator.ex#L147" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>get_day_periods(locale :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: %{optional(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) => <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns a map of day period types to translated day period names</p>
+<h2 id="get_day_periods/1-examples" class="section-heading">
+  <a href="#get_day_periods/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">day_periods</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Timex.Translator</span><span class="o">.</span><span class="n">get_day_periods</span><span class="p" data-group-id="2843011130-1">(</span><span class="s">&quot;en&quot;</span><span class="p" data-group-id="2843011130-1">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="p" data-group-id="2843011130-2">{</span><span class="n">day_periods</span><span class="p" data-group-id="2843011130-3">[</span><span class="ss">:am</span><span class="p" data-group-id="2843011130-3">]</span><span class="p">,</span><span class="w"> </span><span class="n">day_periods</span><span class="p" data-group-id="2843011130-4">[</span><span class="ss">:AM</span><span class="p" data-group-id="2843011130-4">]</span><span class="p" data-group-id="2843011130-2">}</span><span class="w">
+</span><span class="p" data-group-id="2843011130-5">{</span><span class="s">&quot;am&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AM&quot;</span><span class="p" data-group-id="2843011130-5">}</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="get_months/1">
+    <div class="detail-header">
+    <a href="#get_months/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">get_months(locale)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/l10n/translator.ex#L102" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>get_months(locale :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: %{optional(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) => <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns a map of ordinal months to month names</p>
+  </section>
+</div>
+<div class="detail" id="get_months_abbreviated/1">
+    <div class="detail-header">
+    <a href="#get_months_abbreviated/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">get_months_abbreviated(locale)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/l10n/translator.ex#L122" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>get_months_abbreviated(locale :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: %{
+  optional(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) => <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
+}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns a map of ordinal months to month abbreviations</p>
+  </section>
+</div>
+<div class="detail" id="get_weekdays/1">
+    <div class="detail-header">
+    <a href="#get_weekdays/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">get_weekdays(locale)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/l10n/translator.ex#L74" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>get_weekdays(locale :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: %{optional(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) => <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns a map of ordinal weekdays to weekday names, where Monday = 1,
+translated in the given locale</p>
+  </section>
+</div>
+<div class="detail" id="get_weekdays_abbreviated/1">
+    <div class="detail-header">
+    <a href="#get_weekdays_abbreviated/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">get_weekdays_abbreviated(locale)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/l10n/translator.ex#L88" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>get_weekdays_abbreviated(locale :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: %{
+  optional(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) => <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
+}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Returns a map of ordinal weekdays to weekday abbreviations, where Mon = 1</p>
+  </section>
+</div>
+<div class="detail" id="translate/3">
+    <div class="detail-header">
+    <a href="#translate/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">translate(locale, domain, msgid)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/l10n/translator.ex#L33" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>translate(locale :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), domain :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), msgid :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) ::
+  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Translates a string for a given locale and domain.</p>
+<h2 id="translate/3-examples" class="section-heading">
+  <a href="#translate/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Translator</span><span class="o">.</span><span class="n">translate</span><span class="p" data-group-id="3520812738-1">(</span><span class="s">&quot;ru&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;weekdays&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Saturday&quot;</span><span class="p" data-group-id="3520812738-1">)</span><span class="w">
+</span><span class="s">&quot;суббота&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Translator</span><span class="o">.</span><span class="n">translate</span><span class="p" data-group-id="3520812738-2">(</span><span class="s">&quot;it&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;weekdays&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Saturday&quot;</span><span class="p" data-group-id="3520812738-2">)</span><span class="w">
+</span><span class="s">&quot;Sabato&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Translator</span><span class="o">.</span><span class="n">translate</span><span class="p" data-group-id="3520812738-3">(</span><span class="s">&quot;invalid_locale&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;weekdays&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Saturday&quot;</span><span class="p" data-group-id="3520812738-3">)</span><span class="w">
+</span><span class="s">&quot;Saturday&quot;</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="translate_plural/5">
+    <div class="detail-header">
+    <a href="#translate_plural/5" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">translate_plural(locale, domain, msgid, msgid_plural, n)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/l10n/translator.ex#L53" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>translate_plural(
+  locale :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  domain :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  msgid :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  msgid_plural :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  n :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()
+) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Translates a string for a given locale and domain, following the pluralization rules of that
+language.</p>
+<h2 id="translate_plural/5-examples" class="section-heading">
+  <a href="#translate_plural/5-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Translator</span><span class="o">.</span><span class="n">translate_plural</span><span class="p" data-group-id="2653007758-1">(</span><span class="s">&quot;ru&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;relative_time&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;in %{count} second&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;in %{count} seconds&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="2653007758-1">)</span><span class="w">
+</span><span class="s">&quot;через 5 секунд&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Translator</span><span class="o">.</span><span class="n">translate_plural</span><span class="p" data-group-id="2653007758-2">(</span><span class="s">&quot;it&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;relative_time&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;in %{count} second&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;in %{count} seconds&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="2653007758-2">)</span><span class="w">
+</span><span class="s">&quot;in 5 secondi&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex.Translator</span><span class="o">.</span><span class="n">translate_plural</span><span class="p" data-group-id="2653007758-3">(</span><span class="s">&quot;invalid_locale&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;relative_time&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;in %{count} second&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;in %{count} seconds&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="2653007758-3">)</span><span class="w">
+</span><span class="s">&quot;in 5 seconds&quot;</span></code></pre>
+  </section>
+</div>
+<div class="detail" id="with_locale/2">
+    <div class="detail-header">
+    <a href="#with_locale/2" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <span class="signature">with_locale(locale, list)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/l10n/translator.ex#L7" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+      <span class="note">(macro)</span>
+      </div>
+  <section class="docstring">
+<p>This macro sets the locale during execution of a given block of code.</p>
+  </section>
+</div>
+          </div>
+        </section>
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-31a11ba8d67816a5bb76.js"></script>
+  
+  </body>
+</html>
+

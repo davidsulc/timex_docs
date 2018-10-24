@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Timex.Format.DateTime.Formatter – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-31a11ba8d67816a5bb76.css" />
+    <script src="dist/sidebar_items-d0b0758a2c.js"></script>
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+    <div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">timex v3.4.1</small>
+Timex.Format.DateTime.Formatter <small>behaviour</small>        
+          <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+        <section id="moduledoc">
+<p>This module defines the behaviour for custom DateTime formatters.</p>
+        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#format!/3">format!(date, format_string, formatter \\ Default)</a>
+  </div>
+    <div class="summary-synopsis"><p>Formats a Date, DateTime, or NaiveDateTime as a string, using the provided format
+string and formatter. If a formatter is not provided, the formatter
+used is <code class="inline">Timex.Format.DateTime.Formatters.DefaultFormatter</code></p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#format/3">format(date, format_string, formatter \\ Default)</a>
+  </div>
+    <div class="summary-synopsis"><p>Formats a Date, DateTime, or NaiveDateTime as a string, using the provided format
+string and formatter. If a formatter is not provided, the formatter
+used is <code class="inline">Timex.Format.DateTime.Formatters.DefaultFormatter</code></p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#format_token/5">format_token(token, date, modifiers, flags, width)</a>
+  </div>
+    <div class="summary-synopsis"><p>Given a token (as found in <code class="inline">Timex.Parsers.Directive</code>), and a Date, DateTime, or NaiveDateTime struct,
+produce a string representation of the token using values from the struct, using the default locale</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#format_token/6">format_token(locale, token, date, modifiers, flags, width)</a>
+  </div>
+    <div class="summary-synopsis"><p>Given a token (as found in <code class="inline">Timex.Parsers.Directive</code>), and a Date, DateTime, or NaiveDateTime struct,
+produce a string representation of the token using values from the struct</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#lformat!/4">lformat!(date, format_string, locale, formatter \\ Default)</a>
+  </div>
+    <div class="summary-synopsis"><p>Formats a Date, DateTime, or NaiveDateTime as a string, using the provided format string,
+locale, and formatter. If the locale does not have translations, “en” will be used by
+default. If a formatter is not provided, the formatter used is <code class="inline">Timex.Format.DateTime.Formatters.DefaultFormatter</code></p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#lformat/4">lformat(date, format_string, locale, formatter \\ Default)</a>
+  </div>
+    <div class="summary-synopsis"><p>Formats a Date, DateTime, or NaiveDateTime as a string, using the provided format string,
+locale, and formatter. If the locale provided does not have translations, “en” is used by
+default. If a formatter is not provided, the formatter used is <code class="inline">Timex.Format.DateTime.Formatters.DefaultFormatter</code></p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#validate/2">validate(format_string, formatter \\ Default)</a>
+  </div>
+    <div class="summary-synopsis"><p>Validates the provided format string, using the provided formatter,
+or if none is provided, the default formatter. Returns <code class="inline">:ok</code> when valid,
+or <code class="inline">{:error, reason}</code> if not valid</p>
+</div>
+</div>
+  </div>
+  <div class="summary-callbacks summary">
+    <h2>
+      <a href="#callbacks">Callbacks</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:format!/2">format!(date, format_string)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:format/2">format(date, format_string)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:lformat!/3">lformat!(date, format_string, locale)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:lformat/3">lformat(date, format_string, locale)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:tokenize/1">tokenize(format_string)</a>
+  </div>
+</div>
+  </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<div class="detail" id="format!/3">
+  
+    <span id="format!/2"></span>
+  <div class="detail-header">
+    <a href="#format!/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">format!(date, format_string, formatter \\ Default)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L112" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>format!(<a href="Timex.Types.html#t:valid_datetime/0">Timex.Types.valid_datetime</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>() | nil) ::
+  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Formats a Date, DateTime, or NaiveDateTime as a string, using the provided format
+string and formatter. If a formatter is not provided, the formatter
+used is <code class="inline">Timex.Format.DateTime.Formatters.DefaultFormatter</code>.</p>
+<p>Formatting will use the configured default locale, “en” if no other default is given.</p>
+<p>If an error is encountered during formatting, <code class="inline">format!</code> will raise.</p>
+  </section>
+</div>
+<div class="detail" id="format/3">
+  
+    <span id="format/2"></span>
+  <div class="detail-header">
+    <a href="#format/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">format(date, format_string, formatter \\ Default)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L129" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>format(<a href="Timex.Types.html#t:valid_datetime/0">Timex.Types.valid_datetime</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>() | nil) ::
+  {:ok, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Formats a Date, DateTime, or NaiveDateTime as a string, using the provided format
+string and formatter. If a formatter is not provided, the formatter
+used is <code class="inline">Timex.Format.DateTime.Formatters.DefaultFormatter</code>.</p>
+<p>Formatting will use the configured default locale, “en” if no other default is given.</p>
+  </section>
+</div>
+<div class="detail" id="format_token/5">
+    <div class="detail-header">
+    <a href="#format_token/5" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">format_token(token, date, modifiers, flags, width)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L162" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>format_token(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="Timex.Types.html#t:calendar_types/0">Timex.Types.calendar_types</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>()) ::
+  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Given a token (as found in <code class="inline">Timex.Parsers.Directive</code>), and a Date, DateTime, or NaiveDateTime struct,
+produce a string representation of the token using values from the struct, using the default locale.</p>
+  </section>
+</div>
+<div class="detail" id="format_token/6">
+    <div class="detail-header">
+    <a href="#format_token/6" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">format_token(locale, token, date, modifiers, flags, width)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L685" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>format_token(
+  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(),
+  <a href="Timex.Types.html#t:calendar_types/0">Timex.Types.calendar_types</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>()
+) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Given a token (as found in <code class="inline">Timex.Parsers.Directive</code>), and a Date, DateTime, or NaiveDateTime struct,
+produce a string representation of the token using values from the struct.</p>
+  </section>
+</div>
+<div class="detail" id="lformat!/4">
+  
+    <span id="lformat!/3"></span>
+  <div class="detail-header">
+    <a href="#lformat!/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">lformat!(date, format_string, locale, formatter \\ Default)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L68" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>lformat!(<a href="Timex.Types.html#t:valid_datetime/0">Timex.Types.valid_datetime</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>() | nil) ::
+  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Formats a Date, DateTime, or NaiveDateTime as a string, using the provided format string,
+locale, and formatter. If the locale does not have translations, “en” will be used by
+default. If a formatter is not provided, the formatter used is <code class="inline">Timex.Format.DateTime.Formatters.DefaultFormatter</code></p>
+<p>If an error is encountered during formatting, <code class="inline">lformat!</code> will raise</p>
+  </section>
+</div>
+<div class="detail" id="lformat/4">
+  
+    <span id="lformat/3"></span>
+  <div class="detail-header">
+    <a href="#lformat/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">lformat(date, format_string, locale, formatter \\ Default)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L96" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>lformat(<a href="Timex.Types.html#t:valid_datetime/0">Timex.Types.valid_datetime</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>() | nil) ::
+  {:ok, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Formats a Date, DateTime, or NaiveDateTime as a string, using the provided format string,
+locale, and formatter. If the locale provided does not have translations, “en” is used by
+default. If a formatter is not provided, the formatter used is <code class="inline">Timex.Format.DateTime.Formatters.DefaultFormatter</code></p>
+  </section>
+</div>
+<div class="detail" id="validate/2">
+  
+    <span id="validate/1"></span>
+  <div class="detail-header">
+    <a href="#validate/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">validate(format_string, formatter \\ Default)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L155" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>validate(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>() | nil) :: :ok | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Validates the provided format string, using the provided formatter,
+or if none is provided, the default formatter. Returns <code class="inline">:ok</code> when valid,
+or <code class="inline">{:error, reason}</code> if not valid.</p>
+  </section>
+</div>
+          </div>
+        </section>
+        <section id="callbacks" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#callbacks">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Callbacks          </h1>
+          <div class="callbacks-list">
+<div class="detail" id="c:format!/2">
+    <div class="detail-header">
+    <a href="#c:format!/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <span class="signature">format!(date, format_string)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L16" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>format!(date :: <a href="Timex.Types.html#t:calendar_types/0">Timex.Types.calendar_types</a>(), format_string :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) ::
+  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="c:format/2">
+    <div class="detail-header">
+    <a href="#c:format/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <span class="signature">format(date, format_string)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L14" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>format(date :: <a href="Timex.Types.html#t:calendar_types/0">Timex.Types.calendar_types</a>(), format_string :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) ::
+  {:ok, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="c:lformat!/3">
+    <div class="detail-header">
+    <a href="#c:lformat!/3" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <span class="signature">lformat!(date, format_string, locale)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L20" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>lformat!(
+  date :: <a href="Timex.Types.html#t:calendar_types/0">Timex.Types.calendar_types</a>(),
+  format_string :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  locale :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
+) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="c:lformat/3">
+    <div class="detail-header">
+    <a href="#c:lformat/3" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <span class="signature">lformat(date, format_string, locale)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L18" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>lformat(
+  date :: <a href="Timex.Types.html#t:calendar_types/0">Timex.Types.calendar_types</a>(),
+  format_string :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  locale :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
+) :: {:ok, <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="c:tokenize/1">
+    <div class="detail-header">
+    <a href="#c:tokenize/1" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <span class="signature">tokenize(format_string)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/format/datetime/formatter.ex#L12" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>tokenize(format_string :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) ::
+  {:ok, [Timex.Parse.DateTime.Tokenizers.Directive.t()]} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+          </div>
+        </section>
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-31a11ba8d67816a5bb76.js"></script>
+  
+  </body>
+</html>
+

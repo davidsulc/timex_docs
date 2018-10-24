@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Timex.Types – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-31a11ba8d67816a5bb76.css" />
+    <script src="dist/sidebar_items-d0b0758a2c.js"></script>
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+    <div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">timex v3.4.1</small>
+Timex.Types        
+          <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:calendar_types/0">calendar_types()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:date/0">date()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:datetime/0">datetime()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:day/0">day()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:daynum/0">daynum()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:hour/0">hour()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:iso_triplet/0">iso_triplet()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:megaseconds/0">megaseconds()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:microsecond/0">microsecond()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:microsecond_datetime/0">microsecond_datetime()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:microsecond_time/0">microsecond_time()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:microseconds/0">microseconds()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:minute/0">minute()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:month/0">month()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:num_of_days/0">num_of_days()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:second/0">second()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:seconds/0">seconds()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:shift_units/0">shift_units()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:std_offset/0">std_offset()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:time/0">time()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:time_units/0">time_units()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:time_zone/0">time_zone()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:timestamp/0">timestamp()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:tz_offset/0">tz_offset()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:utc_offset/0">utc_offset()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:valid_date/0">valid_date()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:valid_datetime/0">valid_datetime()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:valid_time/0">valid_time()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:valid_timezone/0">valid_timezone()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:week_of_month/0">week_of_month()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:weekday/0">weekday()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:weekday_name/0">weekday_name()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:weeknum/0">weeknum()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:weekstart/0">weekstart()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:year/0">year()</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:zone_abbr/0">zone_abbr()</a>
+  </div>
+</div>
+  </div>
+        </section>
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types          </h1>
+          <div class="types-list">
+<div class="detail" id="t:calendar_types/0">
+    <div class="detail-header">
+    <a href="#t:calendar_types/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">calendar_types()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L38" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>calendar_types() :: <a href="https://hexdocs.pm/elixir/Date.html#t:t/0">Date.t</a>() | <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>() | <a href="https://hexdocs.pm/elixir/NaiveDateTime.html#t:t/0">NaiveDateTime.t</a>() | <a href="https://hexdocs.pm/elixir/Time.html#t:t/0">Time.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:date/0">
+    <div class="detail-header">
+    <a href="#t:date/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">date()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L34" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>date() :: {<a href="#t:year/0">year</a>(), <a href="#t:month/0">month</a>(), <a href="#t:day/0">day</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:datetime/0">
+    <div class="detail-header">
+    <a href="#t:datetime/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">datetime()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L35" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>datetime() :: {<a href="#t:date/0">date</a>(), <a href="#t:time/0">time</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:day/0">
+    <div class="detail-header">
+    <a href="#t:day/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">day()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L6" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>day() :: <a href="https://hexdocs.pm/elixir/Calendar.html#t:day/0">Calendar.day</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:daynum/0">
+    <div class="detail-header">
+    <a href="#t:daynum/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">daynum()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L8" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>daynum() :: 1..366</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:hour/0">
+    <div class="detail-header">
+    <a href="#t:hour/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">hour()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L13" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>hour() :: <a href="https://hexdocs.pm/elixir/Calendar.html#t:hour/0">Calendar.hour</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:iso_triplet/0">
+    <div class="detail-header">
+    <a href="#t:iso_triplet/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">iso_triplet()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L37" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>iso_triplet() :: {<a href="#t:year/0">year</a>(), <a href="#t:weeknum/0">weeknum</a>(), <a href="#t:weekday/0">weekday</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:megaseconds/0">
+    <div class="detail-header">
+    <a href="#t:megaseconds/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">megaseconds()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L18" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>megaseconds() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:microsecond/0">
+    <div class="detail-header">
+    <a href="#t:microsecond/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">microsecond()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L16" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>microsecond() :: <a href="https://hexdocs.pm/elixir/Calendar.html#t:microsecond/0">Calendar.microsecond</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:microsecond_datetime/0">
+    <div class="detail-header">
+    <a href="#t:microsecond_datetime/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">microsecond_datetime()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L36" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>microsecond_datetime() :: {<a href="#t:date/0">date</a>(), <a href="#t:microsecond_time/0">microsecond_time</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:microsecond_time/0">
+    <div class="detail-header">
+    <a href="#t:microsecond_time/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">microsecond_time()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L33" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>microsecond_time() ::
+  {<a href="#t:hour/0">hour</a>(), <a href="#t:minute/0">minute</a>(), <a href="#t:second/0">second</a>(), <a href="#t:microsecond/0">microsecond</a>() | <a href="#t:microseconds/0">microseconds</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:microseconds/0">
+    <div class="detail-header">
+    <a href="#t:microseconds/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">microseconds()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L20" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>microseconds() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:minute/0">
+    <div class="detail-header">
+    <a href="#t:minute/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">minute()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L14" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>minute() :: <a href="https://hexdocs.pm/elixir/Calendar.html#t:minute/0">Calendar.minute</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:month/0">
+    <div class="detail-header">
+    <a href="#t:month/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">month()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L5" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>month() :: <a href="https://hexdocs.pm/elixir/Calendar.html#t:month/0">Calendar.month</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:num_of_days/0">
+    <div class="detail-header">
+    <a href="#t:num_of_days/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">num_of_days()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L7" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>num_of_days() :: 28..31</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:second/0">
+    <div class="detail-header">
+    <a href="#t:second/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">second()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L15" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>second() :: <a href="https://hexdocs.pm/elixir/Calendar.html#t:second/0">Calendar.second</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:seconds/0">
+    <div class="detail-header">
+    <a href="#t:seconds/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">seconds()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L19" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>seconds() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:shift_units/0">
+    <div class="detail-header">
+    <a href="#t:shift_units/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">shift_units()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L30" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>shift_units() ::
+  :milliseconds | :seconds | :minutes | :hours | :days | :weeks | :years</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:std_offset/0">
+    <div class="detail-header">
+    <a href="#t:std_offset/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">std_offset()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L25" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>std_offset() :: <a href="https://hexdocs.pm/elixir/Calendar.html#t:std_offset/0">Calendar.std_offset</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:time/0">
+    <div class="detail-header">
+    <a href="#t:time/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">time()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L32" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>time() :: {<a href="#t:hour/0">hour</a>(), <a href="#t:minute/0">minute</a>(), <a href="#t:second/0">second</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:time_units/0">
+    <div class="detail-header">
+    <a href="#t:time_units/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">time_units()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L31" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>time_units() ::
+  :microseconds
+  | :milliseconds
+  | :seconds
+  | :minutes
+  | :hours
+  | :days
+  | :weeks
+  | :years</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:time_zone/0">
+    <div class="detail-header">
+    <a href="#t:time_zone/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">time_zone()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L22" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>time_zone() :: <a href="https://hexdocs.pm/elixir/Calendar.html#t:time_zone/0">Calendar.time_zone</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:timestamp/0">
+    <div class="detail-header">
+    <a href="#t:timestamp/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">timestamp()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L17" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>timestamp() :: {<a href="#t:megaseconds/0">megaseconds</a>(), <a href="#t:seconds/0">seconds</a>(), <a href="#t:microseconds/0">microseconds</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:tz_offset/0">
+    <div class="detail-header">
+    <a href="#t:tz_offset/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">tz_offset()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L26" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>tz_offset() :: -14..12</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:utc_offset/0">
+    <div class="detail-header">
+    <a href="#t:utc_offset/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">utc_offset()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L24" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>utc_offset() :: <a href="https://hexdocs.pm/elixir/Calendar.html#t:utc_offset/0">Calendar.utc_offset</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:valid_date/0">
+    <div class="detail-header">
+    <a href="#t:valid_date/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">valid_date()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L40" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>valid_date() :: <a href="https://hexdocs.pm/elixir/Date.html#t:t/0">Date.t</a>() | <a href="#t:date/0">date</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:valid_datetime/0">
+    <div class="detail-header">
+    <a href="#t:valid_datetime/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">valid_datetime()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L39" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>valid_datetime() ::
+  <a href="https://hexdocs.pm/elixir/Date.html#t:t/0">Date.t</a>()
+  | <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>()
+  | <a href="https://hexdocs.pm/elixir/NaiveDateTime.html#t:t/0">NaiveDateTime.t</a>()
+  | <a href="https://hexdocs.pm/elixir/Time.html#t:t/0">Time.t</a>()
+  | <a href="#t:datetime/0">datetime</a>()
+  | <a href="#t:date/0">date</a>()
+  | <a href="#t:microsecond_datetime/0">microsecond_datetime</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:valid_time/0">
+    <div class="detail-header">
+    <a href="#t:valid_time/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">valid_time()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L41" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>valid_time() :: <a href="https://hexdocs.pm/elixir/Time.html#t:t/0">Time.t</a>() | <a href="#t:time/0">time</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:valid_timezone/0">
+    <div class="detail-header">
+    <a href="#t:valid_timezone/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">valid_timezone()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L27" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>valid_timezone() :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | <a href="#t:tz_offset/0">tz_offset</a>() | :utc | :local</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:week_of_month/0">
+    <div class="detail-header">
+    <a href="#t:week_of_month/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">week_of_month()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L9" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>week_of_month() :: 1..5</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:weekday/0">
+    <div class="detail-header">
+    <a href="#t:weekday/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">weekday()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L10" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>weekday() :: 1..7</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:weekday_name/0">
+    <div class="detail-header">
+    <a href="#t:weekday_name/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">weekday_name()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L29" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>weekday_name() ::
+  :monday | :tuesday | :wednesday | :thursday | :friday | :saturday | :sunday</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:weeknum/0">
+    <div class="detail-header">
+    <a href="#t:weeknum/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">weeknum()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L11" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>weeknum() :: 1..53</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:weekstart/0">
+    <div class="detail-header">
+    <a href="#t:weekstart/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">weekstart()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L42" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>weekstart() :: <a href="#t:weekday/0">weekday</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:year/0">
+    <div class="detail-header">
+    <a href="#t:year/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">year()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L4" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>year() :: <a href="https://hexdocs.pm/elixir/Calendar.html#t:year/0">Calendar.year</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="t:zone_abbr/0">
+    <div class="detail-header">
+    <a href="#t:zone_abbr/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">zone_abbr()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timex/types.ex#L23" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>zone_abbr() :: <a href="https://hexdocs.pm/elixir/Calendar.html#t:zone_abbr/0">Calendar.zone_abbr</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+          </div>
+        </section>
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-31a11ba8d67816a5bb76.js"></script>
+  
+  </body>
+</html>
+

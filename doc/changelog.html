@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Change Log – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-31a11ba8d67816a5bb76.css" />
+    <script src="dist/sidebar_items-d0b0758a2c.js"></script>
+    
+  </head>
+  <body data-type="extras">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+<h1>Change Log</h1>
+<p>All notable changes to this project will be documented in this file (at least to the extent possible, I am not infallible sadly).
+This project adheres to <a href="http://semver.org/">Semantic Versioning</a>.</p>
+<h2 id="unreleased" class="section-heading">
+  <a href="#unreleased" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Unreleased
+</h2>
+
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li><a href="Timex.html#set/2"><code class="inline">Timex.set/2</code></a> now also accepts setting the <code class="inline">:date</code> from a <code class="inline">%Date{}</code> struct.
+</li>
+</ul>
+<h2 id="3-4-1" class="section-heading">
+  <a href="#3-4-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.4.1
+</h2>
+
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>Afrikaans translations (Julian Dicks)
+</li>
+<li>The :inclusive option for Timex.between?/4 :start and :end in addition to true
+</li>
+</ul>
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>strftime_iso_kitchen no longer discards dates
+</li>
+</ul>
+<h2 id="3-4-0" class="section-heading">
+  <a href="#3-4-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.4.0
+</h2>
+
+<p><strong>NOTE:</strong> There are breaking changes in this release. This is not going to result in a major
+version bump, as the old behavior did not match the docs, and was incorrect to boot. In other words, the
+breaking changes only affect you if you relied on the incorrect behavior, if you were expecting the
+documented behavior, then these are <em>not</em> breaking changes.</p>
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>Interval.contains?/2 to test if one interval contains another
+</li>
+</ul>
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>Interval overlap was being improperly calculated
+</li>
+<li>Interval behavior with respect to open/closed bounds was incorrect (open bounds were being treated as closed and vice versa)
+</li>
+<li>Intervals could be created with invalid from/until (i.e. creating an interval with an until before the from)
+</li>
+<li>Interval documentation improvements for clarity
+</li>
+</ul>
+<h2 id="3-1-13" class="section-heading">
+  <a href="#3-1-13" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.1.13
+</h2>
+
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>Romanian translations (Cezar Halmagean)
+</li>
+</ul>
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>#280 - formatting of non-ISO week numbers
+</li>
+</ul>
+<h2 id="3-1-6-12" class="section-heading">
+  <a href="#3-1-6-12" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.1.6-12
+</h2>
+
+<p>Sorry I didn’t keep this up to date, please review the commits in git for these versions.</p>
+<h2 id="3-1-6" class="section-heading">
+  <a href="#3-1-6" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.1.6
+</h2>
+
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>Translations for zh_CN (Chinese)
+</li>
+<li>Translations for pl (Polish)
+</li>
+<li>#244 - Support for fractional offsets
+</li>
+</ul>
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>Various documentation fixes
+</li>
+<li>Fix #262 - Day of week calculation in Julian calendar - Mark Meeus
+</li>
+<li>Fix #260 - Duration formatting edge case - Slava Kisel
+</li>
+<li>Fix #257 - Fix from_iso_triplet logic - Mathew Bramson
+</li>
+<li>Fix #252 - Formatting/parsing of fractional seconds was not round-trippable
+</li>
+<li>Fix #248 - Make fractional second formatting consistent with standard library
+</li>
+<li>Add application callback so we can provide better errors if :tzdata isn’t started
+</li>
+<li>Enable fallback_to_any in Timex.Protocol
+</li>
+</ul>
+<h2 id="3-1-5" class="section-heading">
+  <a href="#3-1-5" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.1.5
+</h2>
+
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>Fix #218 - Bug with <code class="inline">Timex.from_iso_triplet</code>
+</li>
+<li>Zone abbreviations produced by parsing did not always match those in tzdata
+</li>
+</ul>
+<h2 id="3-1" class="section-heading">
+  <a href="#3-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.1
+</h2>
+
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>Fix #214 - Permit any valid datetime type in formatting API
+</li>
+<li>Fix #215 - Properly validate 2-digit years
+</li>
+</ul>
+<h2 id="3-0-8" class="section-heading">
+  <a href="#3-0-8" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.0.8
+</h2>
+
+<h3 id="changed" class="section-heading">
+  <a href="#changed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+
+<ul>
+<li>Duration.scale/2 now works with float coefficients
+</li>
+</ul>
+<h2 id="3-0-7" class="section-heading">
+  <a href="#3-0-7" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.0.7
+</h2>
+
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>Implementation of Timex.Protocol for Map. This is primarily useful (and intended)
+  for dealing with deserialized date/time structs.
+</li>
+</ul>
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>Precision calculation for microseconds was sometimes incorrect.
+</li>
+</ul>
+<h2 id="3-0-6" class="section-heading">
+  <a href="#3-0-6" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.0.6
+</h2>
+
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>Added parsing for ISO-8601 durations to the Duration API
+</li>
+</ul>
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>#206 - Bug in shifting DateTimes
+</li>
+</ul>
+<h2 id="3-0-5" class="section-heading">
+  <a href="#3-0-5" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.0.5
+</h2>
+
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>#199 - Handling of timezone names with <code class="inline">-</code> was broken.
+</li>
+</ul>
+<h2 id="3-0-3" class="section-heading">
+  <a href="#3-0-3" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.0.3
+</h2>
+
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>Add Duration.to_time/1, to_time!/1, from_time/1 for conversions to/from Time
+</li>
+</ul>
+<h2 id="3-0-2" class="section-heading">
+  <a href="#3-0-2" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.0.2
+</h2>
+
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>Converting a NaiveDateTime with to_datetime did not include microseconds
+</li>
+<li>now/0, now/1, local/0 were not microsecond precise
+</li>
+</ul>
+<h2 id="3-0-1" class="section-heading">
+  <a href="#3-0-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.0.1
+</h2>
+
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li><code class="inline">Duration.to_clock/1</code> - convert a Duration to a <code class="inline">{hour,min,sec,usec}</code> tuple
+</li>
+<li><code class="inline">Duration.from_clock/1</code> - convert a <code class="inline">{hour,min,sec,usec}</code> tuple to a Duration
+</li>
+</ul>
+<h2 id="3-0-0" class="section-heading">
+  <a href="#3-0-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  3.0.0
+</h2>
+
+<p><strong>IMPORTANT</strong>: This release is a significant rewrite of Timex’s internals as well as API. Many things have remained unchanged,
+but there are many things that have as well. Mostly the removal of prior deprecations, and the removal (without deprecation) of
+things incompatible with, or now redundant due to, the introduction of calendar types in Elixir 1.3 and their impact on Timex.
+The list of these changes will be comprehensively spelled out below, along with recommendations for alternatives in the cases
+of removals.</p>
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li><a href="https://github.com/bitwalker/timex/issues/185">#185</a>
+</li>
+<li><a href="https://github.com/bitwalker/timex/issues/137">#137</a>
+</li>
+</ul>
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li><a href="Timex.Protocol.html"><code class="inline">Timex.Protocol</code></a> (defines the API all calendar types must implement to be used with Timex)
+</li>
+<li><code class="inline">compare/3</code>, <code class="inline">diff/3</code> <code class="inline">shift/2</code>, now allow the use of <code class="inline">:milliseconds</code> and <code class="inline">:microseconds</code>
+</li>
+<li><code class="inline">set/2</code> now allow the use of <code class="inline">:microsecond</code>
+</li>
+<li><a href="Timex.Duration.html"><code class="inline">Timex.Duration</code></a>
+</li>
+<li><code class="inline">to_gregorian_microseconds/1</code>, converts a date/time value to microseconds since year zero
+</li>
+</ul>
+<h3 id="changed" class="section-heading">
+  <a href="#changed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+
+<ul>
+<li>Timex’s old Date/DateTime types are replaced by Elixir 1.3’s new calendar types,
+  NaiveDateTime is now used where appropriate, and AmbiguousDateTime remains in order to
+  handle timezone ambiguities.
+</li>
+<li><a href="Timex.html#diff/3"><code class="inline">Timex.diff/3</code></a> now returns to it’s old behaviour of returning a signed integer for values, so
+  that diffing/comparing can be done on a single value.
+</li>
+<li>Renamed <a href="Timex.Time.html"><code class="inline">Timex.Time</code></a> to <a href="Timex.Duration.html"><code class="inline">Timex.Duration</code></a> to better reflect it’s purpose and prevent conflicts with
+  Elixir’s built-in <a href="https://hexdocs.pm/elixir/Time.html"><code class="inline">Time</code></a> type.
+</li>
+<li>Renamed <code class="inline">Timex.Format.Time.*</code> to <code class="inline">Timex.Format.Duration.*</code>
+</li>
+<li>Renamed <code class="inline">:timestamp</code> options to <code class="inline">:duration</code>
+</li>
+<li>Renamed <code class="inline">*_timestamp</code> functions to <code class="inline">*_duration</code>
+</li>
+<li>Changed <a href="Timex.Duration.html"><code class="inline">Timex.Duration</code></a> to operate on and return <code class="inline">Duration</code> structs rather than Erlang timestamp tuples
+</li>
+<li>Changed <code class="inline">Duration.from/2</code>, to <code class="inline">Duration.from_*/1</code>, moving the unit into the name.
+</li>
+<li>Renamed <code class="inline">to_erlang_datetime</code> to <code class="inline">to_erl</code>
+</li>
+</ul>
+<h3 id="removed" class="section-heading">
+  <a href="#removed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Removed
+</h3>
+
+<ul>
+<li>Timex.Date (use <a href="Timex.html"><code class="inline">Timex</code></a> now)
+</li>
+<li>Timex.DateTime (use <a href="Timex.html"><code class="inline">Timex</code></a> now)
+</li>
+<li>Timex.Convertable (no longer makes sense in the face of differentiating NaiveDateTime/DateTime)
+</li>
+<li><code class="inline">set/2</code> no longer allow the use of <code class="inline">:millisecond</code>
+</li>
+<li>Removed <code class="inline">Timex.date</code>
+</li>
+<li>Deprecated <code class="inline">Timex.datetime</code>
+</li>
+<li>Removed <code class="inline">from_timestamp</code> functions
+</li>
+<li>Removed <code class="inline">to_gregorian</code>
+</li>
+<li>Removed <code class="inline">to_seconds/2</code> in favor of <code class="inline">to_gregorian_seconds/1</code> and <code class="inline">to_unix/1</code>
+</li>
+<li>Removed <code class="inline">normalize/1</code>, it no longer is necessary. <code class="inline">normalize/2</code> still exists however
+</li>
+</ul>
+<h2 id="2-1-3" class="section-heading">
+  <a href="#2-1-3" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  2.1.3
+</h2>
+
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>Some behaviour around shifting across DST boundaries was behaving incorrectly (#142)
+</li>
+</ul>
+<h2 id="2-1-2" class="section-heading">
+  <a href="#2-1-2" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  2.1.2
+</h2>
+
+<p>This release adds the base for locale-awareness in Timex, including one locale (“ru”), support for formatting datetimes
+in another locale, and functions which return names of things will now use the default locale. To configure Timex’s default
+locale, put the following in config.exs:</p>
+<pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:timex</span><span class="p">,</span><span class="w"> </span><span class="ss">default_locale</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ru&quot;</span><span class="w"> </span><span class="c1"># or whatever locale you want</span></code></pre>
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>The ability to configure a default locale (the default is “en” if no config is provided) for formatting/translation of strings
+</li>
+<li>The ability to format a string using a given locale, otherwise the default locale is used
+</li>
+<li>Translations for the “ru” locale, more to come
+</li>
+<li>Locale awareness throughout the core API, so functions such as <code class="inline">day_name</code> will return the day name in the configured locale,
+  if translations for that locale were provided
+</li>
+<li><code class="inline">Timex.lformat</code>, and <code class="inline">Timex.lformat!</code> variants of the formatting functions, which take a locale to use in formatting
+</li>
+<li>Added a relative time formatter, which functions very similarly to Moment.js’s relative time formatting
+  You can use it with <code class="inline">Timex.format!</code> or <code class="inline">Timex.format</code>, by providing :relative as the formatter, and using the <code class="inline">{relative}</code> token in your
+  format string. NOTE: The relative formatter does not support other tokens, only <code class="inline">{relative}</code> for now, if it seems like there
+  is a use case where <code class="inline">{relative}</code> should support other tokens, I’ll consider adding that.
+</li>
+<li><p>Added <code class="inline">Timex.from_now</code>, which takes:</p>
+<ul>
+<li>A single Convertable, which returns the relative time between that date/time value and now
+</li>
+<li>Two Convertables, which returns the relative time between the first date/time value, and the reference date (provided as the 2nd)
+</li>
+<li>Two variants of the above which also take a locale as the last argument, and results in the string being translated to that locale
+</li>
+</ul>
+</li>
+<li>Added ASN.1 parsing/formatting support
+</li>
+</ul>
+<h3 id="changed" class="section-heading">
+  <a href="#changed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+
+<ul>
+<li>All functions which return strings, and all formatting functions, will use the default locale for translation, which is “en” unless another was configured, or one was provided if the function takes a locale as an argument.
+</li>
+</ul>
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>Milliseconds should be able to be fractional - the is_millisecond guard was only allowing integers
+</li>
+</ul>
+<h2 id="2-1-1" class="section-heading">
+  <a href="#2-1-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  2.1.1
+</h2>
+
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>Implementations of the Inspect protocol for Date, DateTime, AmbiguousDateTime, TimezoneInfo, and AmbiguousTimezoneInfo
+</li>
+</ul>
+<h3 id="changed" class="section-heading">
+  <a href="#changed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+
+<ul>
+<li>When inspecting any Timex types, the compact view will be used, pass structs: false to view the raw data structures if needed.
+</li>
+</ul>
+<h2 id="2-1-0" class="section-heading">
+  <a href="#2-1-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  2.1.0
+</h2>
+
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>Two new protocols, <a href="Timex.Comparable.html"><code class="inline">Timex.Comparable</code></a> and <code class="inline">Timex.Convertable</code>, implementing these two for your own date/time types
+  will allow you to use the Timex API with your own types, just be aware that only Dates, DateTimes, or AmbiguousDateTimes
+  will be returned as date/time representations, but it should be trivial to add a function in your implementation to
+  convert back.
+</li>
+<li>Basic Julian calendar implementation, which allows you to get the Julian date for a given Convertable, see
+  <a href="Timex.html#to_julian/1"><code class="inline">Timex.to_julian/1</code></a>, you can also get the day of the week number for a Julian date, via <a href="Timex.Calendar.Julian.html"><code class="inline">Timex.Calendar.Julian</code></a>
+</li>
+<li><code class="inline">to_julian</code> function to the <code class="inline">Timex.Convertable</code> protocol
+</li>
+<li><code class="inline">Timex.timezones</code> to get a list of all valid timezones
+</li>
+</ul>
+<h3 id="changed" class="section-heading">
+  <a href="#changed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+
+<ul>
+<li><strong>POTENTIALLY BREAKING</strong> The <code class="inline">{Zname}</code> format token was formatting with the abbreviation, which is incorrect. It
+  has been changed to format with the full name, use <code class="inline">{Zabbr}</code> if you want the abbreviation.
+</li>
+<li>Moved comparison and diffing behaviour into a new protocol, <a href="Timex.Comparable.html"><code class="inline">Timex.Comparable</code></a>, which allows you to now
+  provide your own implementations for comparing other date or datetime types against Timex ones. This
+  makes the API more flexible, and also cleaned up the code quite a bit.
+</li>
+<li>Modified Timex API to accept Comparables for just about all functions
+</li>
+<li>Added implementations of <a href="Timex.Comparable.html"><code class="inline">Timex.Comparable</code></a> for <a href="https://hexdocs.pm/elixir/Tuple.html"><code class="inline">Tuple</code></a>, <a href="https://hexdocs.pm/elixir/Date.html"><code class="inline">Date</code></a>, <a href="https://hexdocs.pm/elixir/DateTime.html"><code class="inline">DateTime</code></a>, <code class="inline">AmbiguousDateTime</code>
+</li>
+<li>Added implementations of <code class="inline">Timex.Convertable</code> for <a href="https://hexdocs.pm/elixir/Map.html"><code class="inline">Map</code></a> and <a href="https://hexdocs.pm/elixir/Atom.html"><code class="inline">Atom</code></a>. The former will accept any map with either
+  DateTime-like keys (i.e. year/month/day/hour/minute/etc.) as strings or atoms, or any Date-like keys (year/month/day),
+  as strings or atoms. The latter will accept only two atoms which represent Dates/DateTimes right now, :epoch, and :zero.
+</li>
+<li>Modified <a href="Timex.Comparable.html"><code class="inline">Timex.Comparable</code></a> to take any <code class="inline">Timex.Convertable</code>
+</li>
+</ul>
+<h2 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h2>
+
+<ul>
+<li>A number of performance enhancements due to refactoring for <code class="inline">Convertable</code> and <code class="inline">Comparable</code>, particularly with diffing
+</li>
+<li>The <code class="inline">%Z</code> strftime format token was formatting timezones as abbreviations, which is not round-trippable due to timezone
+  ambiguity. This token now formats using the full timezone name, which is valid according to the strftime standard.
+</li>
+<li>The <code class="inline">{Zname}</code> token had the same problem as above, and has been fixed to use the full name
+</li>
+</ul>
+<h2 id="2-0-0" class="section-heading">
+  <a href="#2-0-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  2.0.0
+</h2>
+
+<p><strong>READ THIS</strong>: This release contains breaking changes from the previous API. The changes are easy to make,
+and the compiler will catch almost all of them. See the Migrating section of the README for details on migrating
+to 2.0</p>
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>New <a href="https://hexdocs.pm/elixir/Date.html"><code class="inline">Date</code></a> type, which is basically the same as <a href="https://hexdocs.pm/elixir/DateTime.html"><code class="inline">DateTime</code></a>, but without time/timezone, which works with
+  most all API functions that work with DateTimes, except those which are specific to time or timezones.
+  Functions which take a Date or DateTime and options which can manipulate both date and time properties,
+  like <code class="inline">set</code> or <code class="inline">shift</code> will work as you’d expect with Date values and time-based properties (setting a time
+  property will change nothing, shifting will work for values which represent at least a day, sub-day values will not
+  change the Date).
+</li>
+<li>New <code class="inline">AmbiguousDateTime</code> type which is returned instead of <a href="https://hexdocs.pm/elixir/DateTime.html"><code class="inline">DateTime</code></a> when the datetime in question falls in
+  an ambiguously defined timezone period. This type contains two fields, <code class="inline">:before</code> and <code class="inline">:after</code> which contain
+  the <a href="https://hexdocs.pm/elixir/DateTime.html"><code class="inline">DateTime</code></a> values to choose from. This handles cases where previously an error would likely have been thrown,
+  or the behaviour would’ve been undefined.
+</li>
+<li>Timex.date and Timex.datetime, which are the equivalent of the old Date.from, except produce a Date or DateTime respectively.
+  The <code class="inline">from</code> API still exists in the Date and DateTime modules, and is present in the Timex API for easier migration, but will
+  be deprecated in the future.
+</li>
+<li>New <code class="inline">from_erl</code>, <code class="inline">from_timestamp</code>, <code class="inline">from_microseconds</code>, <code class="inline">from_milliseconds</code>, <code class="inline">from_seconds</code>, <code class="inline">from_days</code> functions to
+  replace the old <code class="inline">from</code> API, and to match the <a href="https://hexdocs.pm/elixir/Time.html"><code class="inline">Time</code></a> API more closely.
+</li>
+<li>to_date/to_datetime/to_unix/to_timestamp/to_gregorian_seconds conversions in Timex.Convertable (old Timex.Date.Convert protocol)
+</li>
+<li>before?/after?/between? functions to Timex module
+</li>
+<li>format/format!/format_time/format_time!/parse/parse! API to Timex module
+</li>
+<li>week_of_month/1 and /3 to get the week index of the month a date occurs in
+</li>
+<li><code class="inline">Timex.diff(this, other, :calendar_weeks)</code> - get the diff between two dates in terms of weeks on the calendar,
+  in other words, the diff is done based on the start of the earliest date’s week, and the end of the latest date’s week
+</li>
+</ul>
+<h3 id="changed" class="section-heading">
+  <a href="#changed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+
+<ul>
+<li><strong>BREAKING</strong> All non-bang functions in the API now return error tuples of the form <code class="inline">{:error, term}</code> instead of raising exceptions
+</li>
+<li><strong>BREAKING</strong> All DateTime-related APIs can now return an <code class="inline">AmbiguousDateTime</code>, which must be handled by choosing which DateTime to use.
+</li>
+<li><strong>BREAKING</strong> All Timezone lookups can now return an <code class="inline">AmbiguousTimezoneInfo</code> struct, which must be handled by choosing which TimezoneInfo to use.
+</li>
+<li><strong>BREAKING</strong> DateTime.ms is now DateTime.millisecond
+</li>
+<li><strong>BREAKING</strong> Date module API has moved to Timex module
+</li>
+<li>Date and DateTime modules now contain their respective implementations of the Timex API, all shared functions
+  have moved to the Timex module. You can work with Date or DateTimes either through the Timex API, or through the
+  API exposed in the Date and DateTime modules. It is recommended to use Timex though.
+</li>
+<li><strong>BREAKING</strong> Renamed Timex.Date.Convert to Timex.Convertable
+</li>
+<li><strong>BREAKING</strong> <code class="inline">diff/3</code> now returns the same value no matter which order the arguments are given. Use <code class="inline">compare/3</code> to get the ordering
+</li>
+</ul>
+<h3 id="deprecated" class="section-heading">
+  <a href="#deprecated" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Deprecated
+</h3>
+
+<ul>
+<li><code class="inline">Timex.from</code> (old <code class="inline">Date.from</code>) variants. Use <code class="inline">Timex.date</code>, <code class="inline">Timex.datetime</code>, <code class="inline">Date.from_&lt;type&gt;</code>, or <code class="inline">DateTime.from_&lt;type&gt;</code> instead.
+</li>
+<li><code class="inline">DateTime.from</code>. Use <code class="inline">Timex.datetime</code>, <code class="inline">DateTime.from_erl</code>, <code class="inline">DateTime.from_&lt;type&gt;</code>
+</li>
+<li><code class="inline">to_usecs</code>, <code class="inline">to_msecs</code>, <code class="inline">to_secs</code>, and <code class="inline">to_mins</code> in favor of <code class="inline">to_microseconds</code>, <code class="inline">to_milliseconds</code>, <code class="inline">to_seconds</code>, and <code class="inline">to_minutes</code>
+</li>
+<li>Abbreviated unit names like <code class="inline">secs</code> or <code class="inline">mins</code>, <code class="inline">sec</code> or <code class="inline">min</code>, in favor of their full names (i.e. <code class="inline">seconds</code>, <code class="inline">minutes</code>, etc.)
+</li>
+</ul>
+<h3 id="removed" class="section-heading">
+  <a href="#removed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Removed
+</h3>
+
+<ul>
+<li>DateConvert/DateFormat aliases
+</li>
+</ul>
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>Shifting datetimes is now far more accurate than it was previously, and handles timezone changes, ambiguous timezone periods, and non-existent time periods (such as those during a timezone change like DST).
+</li>
+<li>Diffing by weeks, months, and years is now much more precise
+</li>
+<li>Humanized Time formatter now pluralizes units correctly
+</li>
+</ul>
+<h2 id="1-0-2" class="section-heading">
+  <a href="#1-0-2" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  1.0.2
+</h2>
+
+<p><strong>BREAKING</strong>: If you previously depended on parsing of timezone abbreviations for non-POSIX zones,
+for example, CEST, you will need to update your code to manually map that abbreviation to a valid zone
+name. Timezone abbreviations are only supported if they are POSIX timezones in the Olson timezone database.</p>
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+
+<ul>
+<li>Added CHANGELOG
+</li>
+<li>Add Date.from clause to handle Phoenix datetime_select changeset
+</li>
+</ul>
+<h3 id="changed" class="section-heading">
+  <a href="#changed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+
+<ul>
+<li>Timezone abbreviation handling is now only valid for POSIX/Olson timezone names.
+</li>
+<li>Some small optimizations
+</li>
+</ul>
+<h3 id="deprecated" class="section-heading">
+  <a href="#deprecated" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Deprecated
+</h3>
+
+<ul>
+<li>N/A
+</li>
+</ul>
+<h3 id="removed" class="section-heading">
+  <a href="#removed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Removed
+</h3>
+
+<ul>
+<li>Timezone abbreviation handling for non-POSIX/Olson timezone names
+</li>
+</ul>
+<h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+
+<ul>
+<li>Timezone abbreviation handling (was previously non-deterministic/incorrect)
+</li>
+<li>Disable tzdata’s auto-update during compilation
+</li>
+<li>Usage of imperative if
+</li>
+</ul>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-31a11ba8d67816a5bb76.js"></script>
+  
+  </body>
+</html>
+

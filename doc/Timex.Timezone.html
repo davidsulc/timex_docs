@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Timex.Timezone – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-31a11ba8d67816a5bb76.css" />
+    <script src="dist/sidebar_items-d0b0758a2c.js"></script>
+    
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+    <div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">timex v3.4.1</small>
+Timex.Timezone        
+          <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+        <section id="moduledoc">
+<p>This module is used for looking up the timezone information for
+a given point in time, in the desired zone. Timezones are dependent
+not only on locale, but the date and time for which you are querying.
+For instance, the timezone offset from UTC for <code class="inline">Europe/Moscow</code> is different
+for March 3rd of 2015, than it was in 2013. These differences are important,
+and as such, all functions in this module are date/time sensitive, and where
+omitted, the current date/time are assumed.</p>
+<p>In addition to lookups, this module also does conversion of datetimes from one
+timezone period to another, and determining the difference between a date in one
+timezone period and the same date/time in another timezone period.</p>
+        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#beginning_of_day/1">beginning_of_day(dt)</a>
+  </div>
+    <div class="summary-synopsis"><p>Shifts the provided DateTime to the beginning of the day in it’s timezone</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#convert/2">convert(date, tz)</a>
+  </div>
+    <div class="summary-synopsis"><p>Convert a date to the given timezone (either TimezoneInfo or a timezone name)</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#diff/2">diff(dt, dest)</a>
+  </div>
+    <div class="summary-synopsis"><p>Determine what offset is required to convert a date into a target timezone</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#end_of_day/1">end_of_day(dt)</a>
+  </div>
+    <div class="summary-synopsis"><p>Shifts the provided DateTime to the end of the day in it’s timezone</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#exists?/1">exists?(zone)</a>
+  </div>
+    <div class="summary-synopsis"><p>Determines if a given zone name exists</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get/2">get(tz, datetime \\ :calendar.universal_time())</a>
+  </div>
+    <div class="summary-synopsis"><p>Gets timezone info for a given zone name and date. The date provided
+can either be an Erlang datetime tuple, or a DateTime struct, and if one
+is not provided, then the current date and time is returned</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#local/0">local()</a>
+  </div>
+    <div class="summary-synopsis"><p>Gets the local timezone configuration for the current date and time</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#local/1">local(date)</a>
+  </div>
+    <div class="summary-synopsis"><p>Gets the local timezone configuration for the provided date and time.
+The provided date and time can either be an Erlang datetime tuple, or a DateTime struct</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#name_of/1">name_of(offset)</a>
+  </div>
+    <div class="summary-synopsis"><p>This function takes one of the varying timezone representations</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#resolve/3">resolve(tzname, datetime, utc_or_wall \\ :wall)</a>
+  </div>
+    <div class="summary-synopsis"><p>Given a timezone name as a string, and a date/time in the form of the number of seconds since year zero,
+attempt to resolve a TimezoneInfo for that date/time. If the time is ambiguous, AmbiguousTimezoneInfo will
+be returned. If no result is found, an error will be returned</p>
+</div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#total_offset/1">total_offset(timezone_info)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#total_offset/2">total_offset(std_offset, utc_offset)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#tzdata_to_timezone/2">tzdata_to_timezone(tzdata, zone)</a>
+  </div>
+</div>
+  </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<div class="detail" id="beginning_of_day/1">
+    <div class="detail-header">
+    <a href="#beginning_of_day/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">beginning_of_day(dt)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L508" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>beginning_of_day(<a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>()) :: <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Shifts the provided DateTime to the beginning of the day in it’s timezone</p>
+  </section>
+</div>
+<div class="detail" id="convert/2">
+    <div class="detail-header">
+    <a href="#convert/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">convert(date, tz)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L458" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>convert(date :: <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>(), tz :: <a href="Timex.AmbiguousTimezoneInfo.html#t:t/0">Timex.AmbiguousTimezoneInfo.t</a>()) ::
+  <a href="Timex.AmbiguousDateTime.html#t:t/0">Timex.AmbiguousDateTime.t</a>() | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+          <pre>convert(date :: <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>(), tz :: <a href="Timex.TimezoneInfo.html#t:t/0">Timex.TimezoneInfo.t</a>() | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) ::
+  <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>() | <a href="Timex.AmbiguousDateTime.html#t:t/0">Timex.AmbiguousDateTime.t</a>() | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Convert a date to the given timezone (either TimezoneInfo or a timezone name)</p>
+  </section>
+</div>
+<div class="detail" id="diff/2">
+    <div class="detail-header">
+    <a href="#diff/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">diff(dt, dest)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L500" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>diff(date :: <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>(), tz :: <a href="Timex.TimezoneInfo.html#t:t/0">Timex.TimezoneInfo.t</a>()) ::
+  <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>() | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Determine what offset is required to convert a date into a target timezone</p>
+  </section>
+</div>
+<div class="detail" id="end_of_day/1">
+    <div class="detail-header">
+    <a href="#end_of_day/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">end_of_day(dt)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L536" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>end_of_day(<a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>()) :: <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Shifts the provided DateTime to the end of the day in it’s timezone</p>
+  </section>
+</div>
+<div class="detail" id="exists?/1">
+    <div class="detail-header">
+    <a href="#exists?/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">exists?(zone)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L28" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>exists?(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Determines if a given zone name exists</p>
+  </section>
+</div>
+<div class="detail" id="get/2">
+  
+    <span id="get/1"></span>
+  <div class="detail-header">
+    <a href="#get/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">get(tz, datetime \\ :calendar.universal_time())</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L179" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>get(<a href="Timex.Types.html#t:valid_timezone/0">Timex.Types.valid_timezone</a>(), <a href="Timex.Types.html#t:valid_datetime/0">Timex.Types.valid_datetime</a>()) ::
+  <a href="Timex.TimezoneInfo.html#t:t/0">Timex.TimezoneInfo.t</a>() | <a href="Timex.AmbiguousTimezoneInfo.html#t:t/0">Timex.AmbiguousTimezoneInfo.t</a>() | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Gets timezone info for a given zone name and date. The date provided
+can either be an Erlang datetime tuple, or a DateTime struct, and if one
+is not provided, then the current date and time is returned.</p>
+  </section>
+</div>
+<div class="detail" id="local/0">
+    <div class="detail-header">
+    <a href="#local/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">local()</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L44" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>local() ::
+  <a href="Timex.TimezoneInfo.html#t:t/0">Timex.TimezoneInfo.t</a>() | <a href="Timex.AmbiguousTimezoneInfo.html#t:t/0">Timex.AmbiguousTimezoneInfo.t</a>() | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Gets the local timezone configuration for the current date and time.</p>
+  </section>
+</div>
+<div class="detail" id="local/1">
+    <div class="detail-header">
+    <a href="#local/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">local(date)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L51" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>local(<a href="Timex.Types.html#t:valid_datetime/0">Timex.Types.valid_datetime</a>()) ::
+  <a href="Timex.TimezoneInfo.html#t:t/0">Timex.TimezoneInfo.t</a>() | <a href="Timex.AmbiguousTimezoneInfo.html#t:t/0">Timex.AmbiguousTimezoneInfo.t</a>() | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Gets the local timezone configuration for the provided date and time.
+The provided date and time can either be an Erlang datetime tuple, or a DateTime struct.</p>
+  </section>
+</div>
+<div class="detail" id="name_of/1">
+    <div class="detail-header">
+    <a href="#name_of/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">name_of(offset)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L163" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>name_of(
+  <a href="Timex.Types.html#t:valid_timezone/0">Timex.Types.valid_timezone</a>()
+  | <a href="Timex.TimezoneInfo.html#t:t/0">Timex.TimezoneInfo.t</a>()
+  | <a href="Timex.AmbiguousTimezoneInfo.html#t:t/0">Timex.AmbiguousTimezoneInfo.t</a>()
+) ::
+  <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
+  | {:error, {:invalid_timezone, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}}
+  | {:error, {:no_such_zone, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}}
+  | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>This function takes one of the varying timezone representations:</p>
+<ul>
+<li>atoms
+</li>
+<li>offset integers
+</li>
+<li>shortcut names (i.e. :utc, :local, “Z”, “A”)
+</li>
+</ul>
+<p>and resolves the full name of the timezone if it’s able.</p>
+<p>If a string is provided which isn’t recognized, it is returned untouched,
+only when <a href="#get/2"><code class="inline">get/2</code></a> is called will the timezone lookup fail.</p>
+  </section>
+</div>
+<div class="detail" id="resolve/3">
+  
+    <span id="resolve/2"></span>
+  <div class="detail-header">
+    <a href="#resolve/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">resolve(tzname, datetime, utc_or_wall \\ :wall)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L376" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>resolve(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(), :utc | :wall) ::
+  <a href="Timex.TimezoneInfo.html#t:t/0">Timex.TimezoneInfo.t</a>() | <a href="Timex.AmbiguousTimezoneInfo.html#t:t/0">Timex.AmbiguousTimezoneInfo.t</a>() | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+          <pre>resolve(<a href="Timex.Types.html#t:valid_timezone/0">Timex.Types.valid_timezone</a>(), <a href="Timex.Types.html#t:datetime/0">Timex.Types.datetime</a>(), :utc | :wall) ::
+  <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>() | <a href="Timex.AmbiguousDateTime.html#t:t/0">Timex.AmbiguousDateTime.t</a>() | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Given a timezone name as a string, and a date/time in the form of the number of seconds since year zero,
+attempt to resolve a TimezoneInfo for that date/time. If the time is ambiguous, AmbiguousTimezoneInfo will
+be returned. If no result is found, an error will be returned.</p>
+<p>If an invalid zone name is provided, an error will be returned</p>
+  </section>
+</div>
+<div class="detail" id="total_offset/1">
+    <div class="detail-header">
+    <a href="#total_offset/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">total_offset(timezone_info)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L283" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+          </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="total_offset/2">
+    <div class="detail-header">
+    <a href="#total_offset/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">total_offset(std_offset, utc_offset)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L286" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+          </div>
+  <section class="docstring">
+  </section>
+</div>
+<div class="detail" id="tzdata_to_timezone/2">
+    <div class="detail-header">
+    <a href="#tzdata_to_timezone/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">tzdata_to_timezone(tzdata, zone)</span>
+      <a href="https://github.com/bitwalker/timex/blob/3.4.1/lib/timezone/timezone.ex#L561" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>tzdata_to_timezone(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="Timex.TimezoneInfo.html#t:t/0">Timex.TimezoneInfo.t</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+  </section>
+</div>
+          </div>
+        </section>
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-31a11ba8d67816a5bb76.js"></script>
+  
+  </body>
+</html>
+

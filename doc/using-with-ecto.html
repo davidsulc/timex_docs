@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Using with Ecto – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-31a11ba8d67816a5bb76.css" />
+    <script src="dist/sidebar_items-d0b0758a2c.js"></script>
+    
+  </head>
+  <body data-type="extras">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+<h1>Using with Ecto</h1>
+<p>How to use Timex DateTimes with Ecto.</p>
+<h3 id="getting-started" class="section-heading">
+  <a href="#getting-started" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Getting Started
+</h3>
+
+<p>Timex has can be integrated with Ecto via the <code class="inline">timex_ecto</code> plugin which is available on hex.pm:</p>
+<pre><code class="nohighlight makeup elixir"><span class="kd">defp</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="5221392990-1">do</span><span class="w">
+  </span><span class="p" data-group-id="5221392990-2">[</span><span class="p" data-group-id="5221392990-3">{</span><span class="ss">:timex</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; x.x.x&quot;</span><span class="p" data-group-id="5221392990-3">}</span><span class="p">,</span><span class="w">
+   </span><span class="p" data-group-id="5221392990-4">{</span><span class="ss">:timex_ecto</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; x.x.x&quot;</span><span class="p" data-group-id="5221392990-4">}</span><span class="p" data-group-id="5221392990-2">]</span><span class="w">
+</span><span class="k" data-group-id="5221392990-1">end</span></code></pre>
+<h3 id="available-types" class="section-heading">
+  <a href="#available-types" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Available Types
+</h3>
+
+<p>Timex-Ecto exposes a few different types for you to use:</p>
+<ul>
+<li><code class="inline">Timex.Ecto.Date</code>: An ISO date (<code class="inline">YYYY-MM-DD</code>)
+</li>
+<li><code class="inline">Timex.Ecto.Time</code>: An ISO time (<code class="inline">hh:mm:ss.sss</code>)
+</li>
+<li><code class="inline">Timex.Ecto.DateTime</code>: An ISO 8601 datetime in UTC
+</li>
+<li><code class="inline">Timex.Ecto.DateTimeWithTimezone</code>: Same as DateTime, but contains the timezone, i.e. <code class="inline">America/Chicago</code> as well. <strong>NOTE</strong> currently this is only supported with PostgreSQL, as it relies on complex types which are not currently supported in MySQL, and SQL Server user defined types require CLR types backing them which I have not explored in depth as of yet. See the section below titled <a href="doc:using-with-ecto#section-using-datetimewithtimezone">Using DateTimeWithTimezone</a> for details.
+</li>
+</ul>
+<h3 id="model-definition" class="section-heading">
+  <a href="#model-definition" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Model Definition
+</h3>
+
+<p>In order to use the Timex DateTime type instead of the Ecto DateTime type, your model should look something like the following:</p>
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="k" data-group-id="0664150470-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Ecto.Model</span><span class="w">
+
+  </span><span class="n">schema</span><span class="w"> </span><span class="s">&quot;users&quot;</span><span class="w"> </span><span class="k" data-group-id="0664150470-2">do</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="ss">:string</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:a_date</span><span class="p">,</span><span class="w">       </span><span class="nc">Timex.Ecto.Date</span><span class="w"> </span><span class="c1"># Timex version of :date, will reify as a Date</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:a_time</span><span class="p">,</span><span class="w">       </span><span class="nc">Timex.Ecto.Time</span><span class="w"> </span><span class="c1"># Timex version of :time, will reify as a Time</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:a_datetime</span><span class="p">,</span><span class="w">   </span><span class="nc">Timex.Ecto.DateTime</span><span class="w"> </span><span class="c1"># Timex version of :datetime, will reify as a NaiveDateTime</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:a_datetimetz</span><span class="p">,</span><span class="w"> </span><span class="nc">Timex.Ecto.DateTimeWithTimezone</span><span class="w"> </span><span class="c1"># A custom datatype (:datetimetz) implemented by Timex, will reify as a DateTime</span><span class="w">
+  </span><span class="k" data-group-id="0664150470-2">end</span><span class="w">
+</span><span class="k" data-group-id="0664150470-1">end</span></code></pre>
+<h3 id="using-timex-with-ecto-s-timestamps-macro" class="section-heading">
+  <a href="#using-timex-with-ecto-s-timestamps-macro" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Using Timex with Ecto’s <code class="inline">timestamps</code> macro
+</h3>
+
+<p>Super simple! Your timestamps will now be <a href="https://hexdocs.pm/elixir/DateTime.html"><code class="inline">DateTime</code></a> structs instead of <code class="inline">Ecto.DateTime</code> structs.</p>
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="k" data-group-id="2822872413-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Ecto.Model</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex.Ecto.Timestamps</span><span class="w">
+
+  </span><span class="n">schema</span><span class="w"> </span><span class="s">&quot;users&quot;</span><span class="w"> </span><span class="k" data-group-id="2822872413-2">do</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="ss">:string</span><span class="w">
+    </span><span class="n">timestamps</span><span class="w">
+  </span><span class="k" data-group-id="2822872413-2">end</span><span class="w">
+</span><span class="k" data-group-id="2822872413-1">end</span></code></pre>
+<h3 id="using-with-phoenix" class="section-heading">
+  <a href="#using-with-phoenix" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Using with Phoenix
+</h3>
+
+<p>Phoenix allows you to apply defaults globally to Ecto models via <code class="inline">web/web.ex</code> by changing the <code class="inline">model</code> function like so:</p>
+<pre><code class="nohighlight makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">model</span><span class="w"> </span><span class="k" data-group-id="0049743675-1">do</span><span class="w">
+  </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="0049743675-2">do</span><span class="w">
+    </span><span class="kn">use</span><span class="w"> </span><span class="nc">Ecto.Model</span><span class="w">
+    </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex.Ecto.Timestamps</span><span class="w">
+  </span><span class="k" data-group-id="0049743675-2">end</span><span class="w">
+</span><span class="k" data-group-id="0049743675-1">end</span></code></pre>
+<p>By doing this, you bring the Timex timestamps into scope in all your models.</p>
+<h3 id="using-datetimewithtimezone" class="section-heading">
+  <a href="#using-datetimewithtimezone" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Using DateTimeWithTimezone
+</h3>
+
+<p>NOTE: This currently only applies to PostgreSQL.</p>
+<p>You must run the following SQL against the database you plan on using this type with:</p>
+<pre><code class="sql">CREATE TYPE datetimetz AS (
+    dt timestamptz,
+    tz varchar
+);</code></pre>
+<p>You can then use this type like so:</p>
+<pre><code class="sql">CREATE TABLE example (
+  id integer,
+  created_at datetimetz
+);</code></pre>
+<p>That’s it!</p>
+<h3 id="full-example" class="section-heading">
+  <a href="#full-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Full Example
+</h3>
+
+<p>The following is a simple test app I built for vetting this plugin:</p>
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">EctoTest.Repo</span><span class="w"> </span><span class="k" data-group-id="7813017279-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Ecto.Repo</span><span class="p">,</span><span class="w"> </span><span class="ss">otp_app</span><span class="p">:</span><span class="w"> </span><span class="ss">:timex_ecto_test</span><span class="w">
+</span><span class="k" data-group-id="7813017279-1">end</span><span class="w">
+
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">EctoTest.User</span><span class="w"> </span><span class="k" data-group-id="7813017279-2">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Ecto.Model</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex.Ecto.Timestamps</span><span class="w">
+
+  </span><span class="n">schema</span><span class="w"> </span><span class="s">&quot;users&quot;</span><span class="w"> </span><span class="k" data-group-id="7813017279-3">do</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:name</span><span class="p">,</span><span class="w"> </span><span class="ss">:string</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:date_test</span><span class="p">,</span><span class="w">       </span><span class="nc">Timex.Ecto.Date</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:time_test</span><span class="p">,</span><span class="w">       </span><span class="nc">Timex.Ecto.Time</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:datetime_test</span><span class="p">,</span><span class="w">   </span><span class="nc">Timex.Ecto.DateTime</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:datetimetz_test</span><span class="p">,</span><span class="w"> </span><span class="nc">Timex.Ecto.DateTimeWithTimezone</span><span class="w">
+  </span><span class="k" data-group-id="7813017279-3">end</span><span class="w">
+</span><span class="k" data-group-id="7813017279-2">end</span><span class="w">
+
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">EctoTest</span><span class="w"> </span><span class="k" data-group-id="7813017279-4">do</span><span class="w">
+  </span><span class="kn">import</span><span class="w"> </span><span class="nc">Ecto.Query</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Timex</span><span class="w">
+
+  </span><span class="kn">alias</span><span class="w"> </span><span class="nc">EctoTest.User</span><span class="w">
+  </span><span class="kn">alias</span><span class="w"> </span><span class="nc">EctoTest.Repo</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">seed</span><span class="w"> </span><span class="k" data-group-id="7813017279-5">do</span><span class="w">
+    </span><span class="n">time</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nc">Time</span><span class="o">.</span><span class="n">now</span><span class="w">
+    </span><span class="n">date</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nc">Timex</span><span class="o">.</span><span class="n">today</span><span class="w">
+    </span><span class="n">datetime</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nc">Timex</span><span class="o">.</span><span class="n">now</span><span class="w">
+    </span><span class="n">datetimetz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Timezone</span><span class="o">.</span><span class="n">convert</span><span class="p" data-group-id="7813017279-6">(</span><span class="n">datetime</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Europe/Copenhagen&quot;</span><span class="p" data-group-id="7813017279-6">)</span><span class="w">
+    </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7813017279-7">%</span><span class="nc" data-group-id="7813017279-7">User</span><span class="p" data-group-id="7813017279-7">{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Paul&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">date_test</span><span class="p">:</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="ss">time_test</span><span class="p">:</span><span class="w"> </span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="ss">datetime_test</span><span class="p">:</span><span class="w"> </span><span class="n">datetime</span><span class="p">,</span><span class="w"> </span><span class="ss">datetimetz_test</span><span class="p">:</span><span class="w"> </span><span class="n">datetimetz</span><span class="p" data-group-id="7813017279-7">}</span><span class="w">
+    </span><span class="nc">Repo</span><span class="o">.</span><span class="n">insert!</span><span class="p" data-group-id="7813017279-8">(</span><span class="n">u</span><span class="p" data-group-id="7813017279-8">)</span><span class="w">
+  </span><span class="k" data-group-id="7813017279-5">end</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">all</span><span class="w"> </span><span class="k" data-group-id="7813017279-9">do</span><span class="w">
+    </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nc">User</span><span class="p">,</span><span class="w">
+            </span><span class="ss">select</span><span class="p">:</span><span class="w"> </span><span class="n">u</span><span class="w">
+    </span><span class="nc">Repo</span><span class="o">.</span><span class="n">all</span><span class="p" data-group-id="7813017279-10">(</span><span class="n">query</span><span class="p" data-group-id="7813017279-10">)</span><span class="w">
+  </span><span class="k" data-group-id="7813017279-9">end</span><span class="w">
+</span><span class="k" data-group-id="7813017279-4">end</span><span class="w">
+
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">EctoTest.App</span><span class="w"> </span><span class="k" data-group-id="7813017279-11">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Application</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">start</span><span class="p" data-group-id="7813017279-12">(</span><span class="c">_type</span><span class="p">,</span><span class="w"> </span><span class="c">_args</span><span class="p" data-group-id="7813017279-12">)</span><span class="w"> </span><span class="k" data-group-id="7813017279-13">do</span><span class="w">
+    </span><span class="kn">import</span><span class="w"> </span><span class="nc">Supervisor.Spec</span><span class="w">
+    </span><span class="n">tree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7813017279-14">[</span><span class="n">worker</span><span class="p" data-group-id="7813017279-15">(</span><span class="nc">EctoTest.Repo</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7813017279-16">[</span><span class="p" data-group-id="7813017279-16">]</span><span class="p" data-group-id="7813017279-15">)</span><span class="p" data-group-id="7813017279-14">]</span><span class="w">
+    </span><span class="n">opts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7813017279-17">[</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="nc">EctoTest.Sup</span><span class="p">,</span><span class="w"> </span><span class="ss">strategy</span><span class="p">:</span><span class="w"> </span><span class="ss">:one_for_one</span><span class="p" data-group-id="7813017279-17">]</span><span class="w">
+    </span><span class="nc">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="7813017279-18">(</span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="7813017279-18">)</span><span class="w">
+  </span><span class="k" data-group-id="7813017279-13">end</span><span class="w">
+</span><span class="k" data-group-id="7813017279-11">end</span></code></pre>
+<p>And the results:</p>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex(1)&gt; </span><span class="nc">EctoTest</span><span class="o">.</span><span class="n">seed</span><span class="w">
+
+</span><span class="mi">14</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">43.461</span><span class="w"> </span><span class="p" data-group-id="9024837720-1">[</span><span class="n">debug</span><span class="p" data-group-id="9024837720-1">]</span><span class="w"> </span><span class="nc">INSERT</span><span class="w"> </span><span class="nc">INTO</span><span class="w"> </span><span class="s">&quot;users&quot;</span><span class="w"> </span><span class="p" data-group-id="9024837720-2">(</span><span class="s">&quot;date_test&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;datetime_test&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;datetimetz_test&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;time_test&quot;</span><span class="p" data-group-id="9024837720-2">)</span><span class="w"> </span><span class="nc">VALUES</span><span class="w"> </span><span class="p" data-group-id="9024837720-3">(</span><span class="err">$</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="mi">5</span><span class="p" data-group-id="9024837720-3">)</span><span class="w"> </span><span class="nc">RETURNING</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="p" data-group-id="9024837720-4">[</span><span class="p" data-group-id="9024837720-5">{</span><span class="mi">2015</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p" data-group-id="9024837720-5">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9024837720-6">{</span><span class="p" data-group-id="9024837720-7">{</span><span class="mi">2015</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p" data-group-id="9024837720-7">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9024837720-8">{</span><span class="mi">19</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w"> </span><span class="mi">457000</span><span class="p" data-group-id="9024837720-8">}</span><span class="p" data-group-id="9024837720-6">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9024837720-9">{</span><span class="p" data-group-id="9024837720-10">{</span><span class="p" data-group-id="9024837720-11">{</span><span class="mi">2015</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p" data-group-id="9024837720-11">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9024837720-12">{</span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w"> </span><span class="mi">457000</span><span class="p" data-group-id="9024837720-12">}</span><span class="p" data-group-id="9024837720-10">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Europe/Copenhagen&quot;</span><span class="p" data-group-id="9024837720-9">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Paul&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9024837720-13">{</span><span class="mi">19</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w"> </span><span class="mi">457000</span><span class="p" data-group-id="9024837720-13">}</span><span class="p" data-group-id="9024837720-4">]</span><span class="w"> </span><span class="nc">OK</span><span class="w"> </span><span class="n">query</span><span class="o">=</span><span class="mf">3.9</span><span class="n">ms</span><span class="w">
+</span><span class="p">%</span><span class="nc">EctoTest.User</span><span class="err">{</span><span class="ss">__meta__</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9024837720-14">%</span><span class="nc" data-group-id="9024837720-14">Ecto.Schema.Metadata</span><span class="p" data-group-id="9024837720-14">{</span><span class="ss">source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;users&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">state</span><span class="p">:</span><span class="w"> </span><span class="ss">:loaded</span><span class="p" data-group-id="9024837720-14">}</span><span class="p">,</span><span class="w">
+ </span><span class="ss">date_test</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2015-06-25]</span><span class="p">,</span><span class="w">
+ </span><span class="ss">datetime_test</span><span class="p">:</span><span class="w"> </span><span class="c1">#&lt;DateTime(2015-06-25T21:45:43.457Z Etc/UTC)&gt;,</span><span class="w">
+ </span><span class="ss">datetimetz_test</span><span class="p">:</span><span class="w"> </span><span class="c1">#&lt;DateTime(2015-06-25T21:45:43.457+02:00 Europe/Copenhagen)&gt;,</span><span class="w">
+ </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Paul&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">time_test</span><span class="p">:</span><span class="w"> </span><span class="c1">#&lt;Duration(P45Y6M6DT19H45M43.456856S)&gt;</span><span class="w">
+</span><span class="gp unselectable">iex(2)&gt; </span><span class="nc">EctoTest</span><span class="o">.</span><span class="n">all</span><span class="w">
+
+</span><span class="mi">14</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">46.721</span><span class="w"> </span><span class="p" data-group-id="9024837720-15">[</span><span class="n">debug</span><span class="p" data-group-id="9024837720-15">]</span><span class="w"> </span><span class="nc">SELECT</span><span class="w"> </span><span class="n">u0</span><span class="o">.</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">u0</span><span class="o">.</span><span class="s">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">u0</span><span class="o">.</span><span class="s">&quot;date_test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">u0</span><span class="o">.</span><span class="s">&quot;time_test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">u0</span><span class="o">.</span><span class="s">&quot;datetime_test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">u0</span><span class="o">.</span><span class="s">&quot;datetimetz_test&quot;</span><span class="w"> </span><span class="nc">FROM</span><span class="w"> </span><span class="s">&quot;users&quot;</span><span class="w"> </span><span class="nc">AS</span><span class="w"> </span><span class="n">u0</span><span class="w"> </span><span class="p" data-group-id="9024837720-16">[</span><span class="p" data-group-id="9024837720-16">]</span><span class="w"> </span><span class="nc">OK</span><span class="w"> </span><span class="n">query</span><span class="o">=</span><span class="mf">0.7</span><span class="n">ms</span><span class="w">
+</span><span class="p" data-group-id="9024837720-17">[</span><span class="p">%</span><span class="nc">EctoTest.User</span><span class="err">{</span><span class="ss">__meta__</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9024837720-18">%</span><span class="nc" data-group-id="9024837720-18">Ecto.Schema.Metadata</span><span class="p" data-group-id="9024837720-18">{</span><span class="ss">source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;users&quot;</span><span class="p">,</span><span class="w">
+   </span><span class="ss">state</span><span class="p">:</span><span class="w"> </span><span class="ss">:loaded</span><span class="p" data-group-id="9024837720-18">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">date_test</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[2015-06-25]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">datetime_test</span><span class="p">:</span><span class="w"> </span><span class="c1">#&lt;DateTime(2015-06-25T21:45:43.457Z Etc/UTC)&gt;,</span><span class="w">
+  </span><span class="ss">datetimetz_test</span><span class="p">:</span><span class="w"> </span><span class="c1">#&lt;DateTime(2015-06-25T21:45:43.457+02:00 Europe/Copenhagen)&gt;,</span><span class="w">
+  </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Paul&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">time_test</span><span class="p">:</span><span class="w"> </span><span class="c1">#&lt;Duration(P45Y6M6DT19H45M43.456856S)&gt;}]</span><span class="w">
+</span><span class="gp unselectable">iex(3)&gt;</span></code></pre>
+<p>And that’s all there is to it!</p>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-31a11ba8d67816a5bb76.js"></script>
+  
+  </body>
+</html>
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Parsing – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-31a11ba8d67816a5bb76.css" />
+    <script src="dist/sidebar_items-d0b0758a2c.js"></script>
+    
+  </head>
+  <body data-type="extras">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+<h1>Parsing</h1>
+<p><strong>NOTE:</strong> While Timex is strict about handling user input in general, it makes no guarantees that you will be protected from malicious input, as there are some limitations when considering user-provided input to parsers. A few parsers in Timex accept unbounded input, such as <code class="inline">{s-epoch}</code>, because there is no defined limit on the number of seconds since UNIX epoch (you may want to represent a date far in the future for example). It’s important that you do your own validation of user input before passing it to Timex for parsing as a second line of defense - for example, limiting the length of input strings to some reasonable max length. It’s also highly recommended that you take care to be as restrictive with your format strings as possible.</p>
+<h3 id="how-to-use-timex-for-parsing-datetimes-from-strings" class="section-heading">
+  <a href="#how-to-use-timex-for-parsing-datetimes-from-strings" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  How to use Timex for parsing DateTimes from strings
+</h3>
+
+<p>Parsing a DateTime from an input string is very similar to formatting them, and is quite simple:</p>
+<pre><code class="nohighlight makeup elixir"><span class="c1"># Simple date format, default parser</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex</span><span class="o">.</span><span class="n">parse</span><span class="p" data-group-id="6504804250-1">(</span><span class="s">&quot;2013-03-05&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{YYYY}-{0M}-{0D}&quot;</span><span class="p" data-group-id="6504804250-1">)</span><span class="w">
+
+</span><span class="c1"># Simple date format, strftime parser</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex</span><span class="o">.</span><span class="n">parse</span><span class="p" data-group-id="6504804250-2">(</span><span class="s">&quot;2013-03-05&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="6504804250-2">)</span><span class="w">
+
+</span><span class="c1"># Parse a date using the default parser and the shortcut directive for RFC 1123</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="6504804250-3">(</span><span class="s">&quot;Tue, 05 Mar 2013 23:25:19 Z&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{RFC1123z}&quot;</span><span class="p" data-group-id="6504804250-3">)</span><span class="w">
+</span><span class="c1">#&lt;DateTime(2013-03-05T23:25:19Z Etc/UTC)&gt;</span><span class="w">
+
+</span><span class="c1"># Or you can use the :strftime parser (note how without timezone information, a NaiveDateTime is returned)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="6504804250-4">(</span><span class="s">&quot;2013-03-05&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="6504804250-4">)</span><span class="w">
+</span><span class="ld">~N[2013-03-05T00:00:00]</span><span class="w">
+
+</span><span class="c1"># Any preformatted directive ending in `z` will shift the date to UTC/Zulu</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex</span><span class="o">.</span><span class="n">parse</span><span class="p" data-group-id="6504804250-5">(</span><span class="s">&quot;Tue, 06 Mar 2013 01:25:19 +0200&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{RFC1123}&quot;</span><span class="p" data-group-id="6504804250-5">)</span><span class="w">
+</span><span class="err">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="c1">#&lt;DateTime(2013-03-05T23:25:19Z Etc/UTC)&gt;}</span></code></pre>
+<p>,You can also use “bang” versions (i.e. <code class="inline">parse!</code>), which will raise on failure rather than returning an <code class="inline">{:error, reason}</code> tuple (<code class="inline">parse!/1</code> and <code class="inline">parse!/2</code> respectively).</p>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-31a11ba8d67816a5bb76.js"></script>
+  
+  </body>
+</html>
+

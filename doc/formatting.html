@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.19.1">
+    <title>Formatting – timex v3.4.1</title>
+    <link rel="stylesheet" href="dist/html-31a11ba8d67816a5bb76.css" />
+    <script src="dist/sidebar_items-d0b0758a2c.js"></script>
+    
+  </head>
+  <body data-type="extras">
+    <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Sidebar</span>
+</button>
+<button class="sidebar-button night-mode-toggle">
+  <span class="icon-theme" aria-hidden="true"></span>
+  <span class="sr-only">Toggle Theme</span>
+</button>
+<section class="sidebar">
+
+  <a href="getting-started.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+timex      </h1>
+      <h2 class="sidebar-projectVersion">
+        v3.4.1
+      </h2>
+    </div>
+  </a>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <input name="q" type="text" id="search-list" class="search-input" placeholder="Search" aria-label="Search" autocomplete="off" />
+  </form>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+<h1>Formatting</h1>
+<p>How to format DateTimes as strings with Timex’s DateFormat module, and time intervals with TimeFormatter</p>
+<h3 id="formatting-datetimes" class="section-heading">
+  <a href="#formatting-datetimes" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Formatting DateTimes
+</h3>
+
+<p>Formatting DateTimes in Timex is done via the <a href="Timex.html"><code class="inline">Timex</code></a> module. There are two built in formatters, :default and :strftime. The details of how to construct format strings can be found in the docs for <a href="http://hexdocs.pm/timex/Timex.Format.DateTime.Formatters.Default.html"><code class="inline">Timex.Format.DateTime.Formatters.Default</code></a> and <a href="http://hexdocs.pm/timex/Timex.Format.DateTime.Formatters.Strftime.html"><code class="inline">Timex.Format.DateTime.Formatters.Strftime</code></a>, so this document will be a brief overview of the DateFormat API and how you use it typically.</p>
+<pre><code class="nohighlight makeup elixir"><span class="c1"># By default the :default formatter is used</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex</span><span class="o">.</span><span class="n">format</span><span class="p" data-group-id="7164361985-1">(</span><span class="p" data-group-id="7164361985-2">{</span><span class="mi">2013</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p" data-group-id="7164361985-2">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{YYYY}-{M}-{D}&quot;</span><span class="p" data-group-id="7164361985-1">)</span><span class="w">
+</span><span class="p" data-group-id="7164361985-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2013-8-18&quot;</span><span class="p" data-group-id="7164361985-3">}</span><span class="w">
+
+</span><span class="c1"># But you can use the :strftime formatter very easily</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex</span><span class="o">.</span><span class="n">format</span><span class="p" data-group-id="7164361985-4">(</span><span class="p" data-group-id="7164361985-5">{</span><span class="mi">2013</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p" data-group-id="7164361985-5">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="7164361985-4">)</span><span class="w">
+</span><span class="p" data-group-id="7164361985-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2013-08-18&quot;</span><span class="p" data-group-id="7164361985-6">}</span><span class="w">
+
+</span><span class="c1"># If you create your own formatter, you can use it easily as well</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex</span><span class="o">.</span><span class="n">format</span><span class="p" data-group-id="7164361985-7">(</span><span class="p" data-group-id="7164361985-8">{</span><span class="mi">2013</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p" data-group-id="7164361985-8">}</span><span class="p">,</span><span class="w"> </span><span class="n">format_str</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.MyDateFormatter</span><span class="p" data-group-id="7164361985-7">)</span><span class="w">
+
+</span><span class="c1"># If formatting fails for some reason you will get an `{:error, reason}` tuple, so it&#39;s</span><span class="w">
+</span><span class="c1"># recommended to use `format/1` or `format/2`; however you can use the &quot;bang&quot;</span><span class="w">
+</span><span class="c1"># versions of these two, `format!/1` or `format!/2` which will return the result directly,</span><span class="w">
+</span><span class="c1"># or raise on failure</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Timex</span><span class="o">.</span><span class="n">format!</span><span class="p" data-group-id="7164361985-9">(</span><span class="p" data-group-id="7164361985-10">{</span><span class="mi">2013</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p" data-group-id="7164361985-10">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:strftime</span><span class="p" data-group-id="7164361985-9">)</span><span class="w">
+</span><span class="s">&quot;2013-08-18&quot;</span></code></pre>
+<h3 id="formatting-durations" class="section-heading">
+  <a href="#formatting-durations" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Formatting durations
+</h3>
+
+<p>Formatting durations (or timestamps really) is done via the <a href="Timex.Format.Duration.Formatter.html"><code class="inline">Timex.Format.Duration.Formatter</code></a> module, or more commonly via <code class="inline">Timex.format_duration</code>. It is extensible like date/time formatting as well.</p>
+<pre><code class="nohighlight makeup elixir"><span class="c1"># Time since the epoch</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Timex</span><span class="o">.</span><span class="n">format_duration</span><span class="w">
+</span><span class="s">&quot;P45Y7M25DT18H13M10.966072S&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Duration</span><span class="o">.</span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Timex</span><span class="o">.</span><span class="n">format_duration</span><span class="p" data-group-id="1541086775-1">(</span><span class="ss">:humanized</span><span class="p" data-group-id="1541086775-1">)</span><span class="w">
+</span><span class="s">&quot;45 years, 7 months, 3 weeks, 4 days, 18 hours, 13 minutes, 16 seconds, 141.422 milliseconds&quot;</span><span class="w">
+
+</span><span class="c1"># Time it took to execute some code</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="1541086775-2">{</span><span class="n">interval</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="1541086775-2">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Duration</span><span class="o">.</span><span class="n">measure</span><span class="p" data-group-id="1541086775-3">(</span><span class="k" data-group-id="1541086775-4">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">1</span><span class="o">.</span><span class="o">.</span><span class="mi">10000</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">reverse</span><span class="w"> </span><span class="k" data-group-id="1541086775-4">end</span><span class="p" data-group-id="1541086775-3">)</span><span class="w">
+</span><span class="c1">#&lt;Duration(PT0.002614S)&gt;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">interval</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Timex</span><span class="o">.</span><span class="n">format_duration</span><span class="w">
+</span><span class="s">&quot;PT0.002614S&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">interval</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Timex</span><span class="o">.</span><span class="n">format_duration</span><span class="p" data-group-id="1541086775-5">(</span><span class="ss">:humanized</span><span class="p" data-group-id="1541086775-5">)</span><span class="w">
+</span><span class="s">&quot;2.614 milliseconds&quot;</span></code></pre>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.19.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/html-31a11ba8d67816a5bb76.js"></script>
+  
+  </body>
+</html>
+
